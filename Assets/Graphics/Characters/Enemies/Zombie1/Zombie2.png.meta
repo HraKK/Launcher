@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 918f66ee73462084eba3369be805d934
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Zombie2_0
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 6
+        width: 63
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie2_1
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 6
+        width: 77
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie2_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 8
+        width: 39
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie2_3
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 13
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie2_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 14
+        width: 81
+        height: 71
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 95
+        width: 77
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie4
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 98
+        width: 63
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 103
+        width: 81
+        height: 71
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 103
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Zombie3
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 103
+        width: 39
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spriteAtlasHint: 
+  userData: 
