@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () 
 	{
 		// TODO: Change key
-		if(Input.touchCount > 0)
+		if(Input.GetKeyDown(KeyCode.Space))
 		{
 			if(rigidbody2D.isKinematic)
 			{

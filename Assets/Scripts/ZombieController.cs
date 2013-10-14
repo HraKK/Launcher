@@ -31,7 +31,7 @@ public class ZombieController : MonoBehaviour {
 	void Update()
 	{
 		// HACK
-		if(Input.touchCount > 0)
+		if(Input.GetKeyDown(KeyCode.Space))
 		{
 			init = true;
 		}
