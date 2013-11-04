@@ -1,0 +1,7 @@
+C:\AM\AssetsManager\obj\Debug\UnityVS.AssetsManager.CSharp.csprojResolveAssemblyReference.cache
+C:\AM\AssetsManager\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\AM\AssetsManager\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\AM\AssetsManager\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\AM\AssetsManager\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\AM\AssetsManager\obj\Debug\Assembly-CSharp.dll
+C:\AM\AssetsManager\obj\Debug\Assembly-CSharp.pdb

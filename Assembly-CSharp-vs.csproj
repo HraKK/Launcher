@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{32C6797B-B9CD-35D5-A52A-4AF300D71551}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity4.2/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity4.2/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Scripts\Bootstrap\Bootstraper.cs" />
+     <Compile Include="Assets\Scripts\Bootstrap\CoreBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Bootstrap\Interface\IBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Bootstrap\PackagesBootstraper.cs" />
+     <Compile Include="Assets\Scripts\GUISystem\GUISystem.cs" />
+     <Compile Include="Assets\Scripts\GUISystem\GUIView.cs" />
+     <Compile Include="Assets\Scripts\GUISystem\Interface\IGUISystem.cs" />
+     <Compile Include="Assets\Scripts\GUISystem\Interface\IGUIView.cs" />
+     <Compile Include="Assets\Scripts\GUISystem\PreloaderView.cs" />
+     <Compile Include="Assets\Scripts\Main.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\AssetManagerModel.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\AssetsManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\DownloadPackage.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\Downloader.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\ExportAssetBundles.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\Interface\IAssetsManagerService.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\Interface\ILoadAndCacheAdapter.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\StringHolder.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\WebLoadAndCacheAdapter.cs" />
+     <Compile Include="Assets\Scripts\Manager\Assets\iOSLoadAndCacheAdapter.cs" />
+     <Compile Include="Assets\Scripts\Manager\Service\Interface\IService.cs" />
+     <Compile Include="Assets\Scripts\Manager\Service\Interface\IServiceProvider.cs" />
+     <Compile Include="Assets\Scripts\Manager\Service\NotRegisteredServiceException.cs" />
+     <Compile Include="Assets\Scripts\Manager\Service\NotRegisteredServiceProviderException.cs" />
+     <Compile Include="Assets\Scripts\Manager\Service\ServiceProvider.cs" />
+     <Compile Include="Assets\Scripts\Package\DynamicPackage.cs" />
+     <Compile Include="Assets\Scripts\Package\Interface\IPackageFactory.cs" />
+     <Compile Include="Assets\Scripts\Package\PackageFactory.cs" />
+     <Compile Include="Assets\Scripts\Package\PackageFactoryModel.cs" />
+     <Compile Include="Assets\Scripts\Package\PackageType.cs" />
+     <Compile Include="Assets\Scripts\Package\StaticPackage.cs" />
+     <Compile Include="Assets\Scripts\Package\StaticPackages.cs" />
+     <Compile Include="Assets\Scripts\UI\Interface\IPreloader.cs" />
+     <Compile Include="Assets\Scripts\UI\PreLoader.cs" />
+ <Reference Include="System.Xml.Linq">
+ <HintPath>Assets\Plugins\System.Xml.Linq.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
