@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rows>
+  <row>
+    <resources>
+      <money>1000</money>
+      <skull>1</skull>
+      <crystall>100</crystall>
+    </resources>
+  </row>
+</rows>

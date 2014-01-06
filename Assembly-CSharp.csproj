@@ -5,20 +5,21 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{32C6797B-B9CD-35D5-A52A-4AF300D71551}</ProjectGuid>
+	<ProjectGuid>{C9C5ACED-AF37-B251-9AC8-2374AADD4A08}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	<DebugSymbols>true</DebugSymbols>
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_1;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -36,48 +37,155 @@
 	<Reference Include="System" />
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity4.2/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity4.2/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Bootstrap\Bootstraper.cs" />
-     <Compile Include="Assets\Scripts\Bootstrap\CoreBootstraper.cs" />
-     <Compile Include="Assets\Scripts\Bootstrap\Interface\IBootstraper.cs" />
-     <Compile Include="Assets\Scripts\Bootstrap\PackagesBootstraper.cs" />
-     <Compile Include="Assets\Scripts\GUISystem\GUISystem.cs" />
-     <Compile Include="Assets\Scripts\GUISystem\GUIView.cs" />
-     <Compile Include="Assets\Scripts\GUISystem\Interface\IGUISystem.cs" />
-     <Compile Include="Assets\Scripts\GUISystem\Interface\IGUIView.cs" />
-     <Compile Include="Assets\Scripts\GUISystem\PreloaderView.cs" />
-     <Compile Include="Assets\Scripts\Main.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\AssetManagerModel.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\AssetsManager.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\DownloadPackage.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\Downloader.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\ExportAssetBundles.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\Interface\IAssetsManagerService.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\Interface\ILoadAndCacheAdapter.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\StringHolder.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\WebLoadAndCacheAdapter.cs" />
-     <Compile Include="Assets\Scripts\Manager\Assets\iOSLoadAndCacheAdapter.cs" />
-     <Compile Include="Assets\Scripts\Manager\Service\Interface\IService.cs" />
-     <Compile Include="Assets\Scripts\Manager\Service\Interface\IServiceProvider.cs" />
-     <Compile Include="Assets\Scripts\Manager\Service\NotRegisteredServiceException.cs" />
-     <Compile Include="Assets\Scripts\Manager\Service\NotRegisteredServiceProviderException.cs" />
-     <Compile Include="Assets\Scripts\Manager\Service\ServiceProvider.cs" />
-     <Compile Include="Assets\Scripts\Package\DynamicPackage.cs" />
-     <Compile Include="Assets\Scripts\Package\Interface\IPackageFactory.cs" />
-     <Compile Include="Assets\Scripts\Package\PackageFactory.cs" />
-     <Compile Include="Assets\Scripts\Package\PackageFactoryModel.cs" />
-     <Compile Include="Assets\Scripts\Package\PackageType.cs" />
-     <Compile Include="Assets\Scripts\Package\StaticPackage.cs" />
-     <Compile Include="Assets\Scripts\Package\StaticPackages.cs" />
-     <Compile Include="Assets\Scripts\UI\Interface\IPreloader.cs" />
-     <Compile Include="Assets\Scripts\UI\PreLoader.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Bootstraper\FajBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Controller\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Dao\DaoFactory.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Dao\Interface\IDaoFactory.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Main.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Game\GameModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Game\Strategy\Server\BaseServerInitializeStrategy.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Game\Strategy\Server\EmptyServerInitializeStrategy.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Game\Strategy\Server\ServerInitializeStrategyFactory.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\Dao\Interface\IPlayerDao.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\Dao\IoS\IoSPlayerDao.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\Dao\Web\WebPlayerDao.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\Interface\IPlayerModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\PlayerModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\Service\Interface\IPlayerService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Player\Service\PlayerService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Preloader\PreloaderModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Preloader\Strategy\Interface\IPackageStrategyCollection.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Preloader\Strategy\PackageStrategyCollection.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Preloader\Strategy\StaticPackageStrategy.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Preloader\View\PreloaderView.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Static\Parser\PlayerInitializeParser.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Static\PlayerInitialize\Collection\Interface\IPlayerInitializeCollection.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Static\PlayerInitialize\Collection\Item\Interface\IPlayerInitializeItem.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Static\PlayerInitialize\Collection\Item\PlayerInitializeItem.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Static\PlayerInitialize\Collection\PlayerInitializeCollection.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Model\Static\StaticContainer.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Router\ClientRouter.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Router\Service\Interface\IServerRouterService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Router\Service\ServerRouterService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Router\Strategy\ClientAndServerRouterStrategy.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Router\Strategy\ClientOnlyRouterStrategy.cs" />
+     <Compile Include="Assets\Scripts\Faj\Client\Router\Strategy\RouterStrategyFactory.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Message\Content\IdContent.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Message\Content\Interface\IIdContent.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Message\Content\Interface\IPlayerContent.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Message\Content\PlayerContent.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Model\Player\Resource\Interface\IPlayerResources.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Model\Player\Resource\PlayerResources.cs" />
+     <Compile Include="Assets\Scripts\Faj\Common\Model\Player\Structure\PlayerStructure.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Controller\InitializeController.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Dao\FilePlayerDao.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Dao\Interface\IServerPlayerDao.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Exception\NotExistPlayerException.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Interface\IPlayerModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\PlayerModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Registration\PlayerRegistrationModel.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Service\Interface\IServerPlayersService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Model\Player\Service\ServerPlayersService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Router\ServerRouter.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Router\Service\Interface\IServerRouterService.cs" />
+     <Compile Include="Assets\Scripts\Faj\Server\Router\Service\ServerRouterService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Adapter\AssetAdapterFactory.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Adapter\Interface\IAssetAdapterFactory.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Adapter\Interface\ILoadAndCacheAdapter.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Adapter\WebLoadAndCacheAdapter.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Adapter\iOSLoadAndCacheAdapter.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\DownloadPackage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Interface\IDownloadPackage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Dynamic\DynamicPackage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Dynamic\Interface\IDynamicPackage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Dynamic\Interface\IPackageCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Dynamic\PackageCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Manager\Interface\IPackageResourceManager.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Manager\PackageResourceManager.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Manager\Service\Interface\IResourceManagerService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Manager\Service\ResourceManagerService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Service\Interface\IPackageService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Service\PackageService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Static\Interface\IStaticPackage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Static\Interface\IStaticPackages.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Static\PackageType.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Static\StaticPackage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Package\Static\StaticPackages.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Service\AssetService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Assets\Service\Interface\IAssetService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Bootstrap\CoreBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Bootstrap\Interface\IBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Bootstrap\Interface\ICoreBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Bootstrap\Interface\IPackageBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Bootstrap\PackageBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Bootstrap\ServiceBootstraper.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Config\ApplicationConfig.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Config\Interface\IApplicationConfig.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Controller\AbstractController.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Controller\Exception\NotExistActionException.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Controller\Interface\IController.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Dependency\Interface\IDependency.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Dependency\Interface\IDependencyAwaiter.cs" />
+     <Compile Include="Assets\Scripts\Uddle\GUISystem\GUIView.cs" />
+     <Compile Include="Assets\Scripts\Uddle\GUISystem\Interface\IGUIObserver.cs" />
+     <Compile Include="Assets\Scripts\Uddle\GUISystem\Interface\IGUIView.cs" />
+     <Compile Include="Assets\Scripts\Uddle\GUISystem\Service\GUIObserverService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\GUISystem\Service\Interface\IGUIObserverService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Message\Content\Interface\IContent.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Message\EmptyMessage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Message\Interface\IMessage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Message\SimpleMessage.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Model\Downloader\DownloaderModel.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Model\Downloader\Interface\IDownloaderModel.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Model\Game\AbstractGameModel.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Model\Game\Interface\IGameModel.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Model\Preloader\AbstractPreloaderModel.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Model\Preloader\Interface\IPreloaderModel.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Observer\Interface\IObserver.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Observer\Interface\IObserverCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Observer\ObserverCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Router\AbstractRouter.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Router\Exception\NotExistControllerException.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Router\Interface\IRouter.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\CoroutineService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\Interface\ICoroutineService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\Interface\IService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\Interface\IServiceProvider.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\NotRegisteredServiceException.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\NotRegisteredServiceProviderException.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Service\ServiceProvider.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Collection\Interface\IStaticCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Collection\Interface\IStaticContainer.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Collection\Interface\IStaticGenericCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Collection\Item\IStaticItem.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Collection\TypicalStaticCollection.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Exception\NotInitializedContainerException.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Exception\NotLoadedPackageException.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Parser\Interface\IStaticParser.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Service\Interface\IStaticContainerService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\Service\StaticContainerService.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Static\StaticContainer.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Strategy\Interface\IStrategy.cs" />
+     <Compile Include="Assets\Scripts\Uddle\Strategy\Interface\IStrategyFactory.cs" />
+     <Compile Include="Assets\Scripts\tools\ExportAssetBundles.cs" />
+     <Compile Include="Assets\Scripts\tools\StringHolder.cs" />
+     <None Include="Assets\Resources\Static\item.xml" />
+     <None Include="Assets\Resources\Shaders\Sprites-Default.shader" />
+     <None Include="Assets\Resources\Static\player.xml" />
+     <None Include="Assets\Plugins\protobuf-net.xml" />
+     <None Include="Assets\Resources\Static\player_initialize.xml" />
+ <Reference Include="protobuf-net">
+ <HintPath>Assets\Plugins\protobuf-net.dll</HintPath>
+ </Reference>
  <Reference Include="System.Xml.Linq">
  <HintPath>Assets\Plugins\System.Xml.Linq.dll</HintPath>
  </Reference>
