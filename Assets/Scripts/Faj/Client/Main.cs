@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Uddle.GUISysytem.Interface;
 using Uddle.Service;
 using Uddle.Service.Interface;
-using Uddle.GUISysytem.Service.Interface;
 using Uddle.Config;
 using Faj.Client.Bootstrap;
 using Faj.Client.Model.Game;
 using Uddle.Bootstrap.Interface;
 using Uddle.Model.Game.Interface;
+using Uddle.GUI.Render.Service.Interface;
 
 namespace Faj.Client
 {

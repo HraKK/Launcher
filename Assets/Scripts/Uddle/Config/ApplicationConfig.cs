@@ -32,5 +32,10 @@ namespace Uddle.Config
         {
             return "file:///C://packages.xml";
         }
+
+        public int GetRendererCount()
+        {
+            return 30;
+        }
 	}
 }

@@ -1,7 +1,6 @@
-﻿using Uddle.GUISysytem.Interface;
-using UnityEngine;
-using Uddle.GUISysytem;
+﻿using UnityEngine;
 using Uddle.Model.Preloader.Interface;
+using Uddle.GUISysytem;
 
 namespace Faj.Client.Model.Preloader.View
 {
@@ -35,7 +34,7 @@ namespace Faj.Client.Model.Preloader.View
 
         public override void Draw()
         {
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.ScaleToFit);
+//            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.ScaleToFit);
         }
     }
 }

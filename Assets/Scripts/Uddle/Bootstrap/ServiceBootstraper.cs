@@ -9,14 +9,17 @@ using Uddle.Assets.Service.Interface;
 using Uddle.Assets.Package.Service.Interface;
 using Uddle.Service;
 using Uddle.Observer;
-using Uddle.GUISysytem.Service;
-using Uddle.GUISysytem.Service.Interface;
 using Uddle.Service.Interface;
 using Uddle.Config.Interface;
 using Uddle.Bootstrap.Interface;
 using Uddle.Assets.Package.Manager;
 using Uddle.Assets.Package.Manager.Service;
 using Uddle.Assets.Package.Manager.Service.Interface;
+using Uddle.GUI.Render.Service;
+using Uddle.GUI.Render.Service.Interface;
+using Uddle.GUI.Render.Pool;
+using Uddle.GUI.Render.Pool.Service;
+using Uddle.GUI.Render.Pool.Service.Interface;
 
 namespace Uddle.Bootstrap
 {
@@ -51,6 +54,10 @@ namespace Uddle.Bootstrap
             var packageResourceManager = new PackageResourceManager();
             var resourceManagerService = new ResourceManagerService(packageResourceManager);
             serviceProvider.SetService<IResourceManagerService>(resourceManagerService);
+
+            var spriteRendererPool = new SpriteRendererPool(applicationConfig.GetRendererCount());
+            var spriteRendererPoolService = new SpriteRendererPoolService(spriteRendererPool);
+            serviceProvider.SetService<ISpriteRendererPoolService>(spriteRendererPoolService);
         }
     }
 }

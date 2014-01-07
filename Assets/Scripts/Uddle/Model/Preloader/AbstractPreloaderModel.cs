@@ -1,9 +1,9 @@
 ﻿using Uddle.Model.Preloader.Interface;
 using Uddle.Dependency.Interface;
-using Uddle.GUISysytem.Interface;
-using Uddle.GUISysytem.Service.Interface;
 using System;
 using Uddle.Service;
+using Uddle.GUI.Render.Interface;
+using Uddle.GUI.Render.Service.Interface;
 
 namespace Uddle.Model.Preloader
 {
@@ -16,6 +16,7 @@ namespace Uddle.Model.Preloader
 
         public event Action<int> OnTotalDependencyEvent;
         public event Action<int> OnDependencyReleaseEvent;
+        public event Action OnDependenciesReleaseEvent;
 
         public AbstractPreloaderModel()
         {
@@ -47,9 +48,6 @@ namespace Uddle.Model.Preloader
             dependency.OnReleaseEvent -= new Action<IDependency>(OnRelease);
 
             currentDependenciesCount++;
-            /*
-            
-            */
 
             if (OnDependencyReleaseEvent != null)
             {
@@ -59,6 +57,10 @@ namespace Uddle.Model.Preloader
             if (totalDependenciesCount == currentDependenciesCount)
             {
                 Stop();
+                if (OnDependenciesReleaseEvent != null)
+                {
+                    OnDependenciesReleaseEvent();
+                }
             }
 
             

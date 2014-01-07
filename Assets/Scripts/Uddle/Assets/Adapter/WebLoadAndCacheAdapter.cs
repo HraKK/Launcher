@@ -202,17 +202,6 @@ namespace Uddle.Assets.Adapter
                 dynamicPackage.SetBundle(bundle);
                 packageService.AddPackage(dynamicPackage);
 
-                /*
-				if(bundle.Contains("objectsList"))
-				{
-					StringHolder holder = bundle.Load("objectsList", typeof(StringHolder)) as StringHolder;
-
-					foreach(var c in holder.content)
-					{
-						Debug.Log ("CON" + c);
-					}
-				}*/
-
                 currentDownloading.Complete();
 			    loadingQueue.Remove(staticPackage.name);
                 dynamicPackage.Loaded();

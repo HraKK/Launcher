@@ -10,5 +10,6 @@
 	{
         ApplicationPlatform GetPlatform();
         string GetPackagesXmlPath();
+        int GetRendererCount();
 	}
 }

@@ -13,6 +13,7 @@ using System;
 using Faj.Client.Model.Game.Strategy.Server;
 using Faj.Client.Model.Player.Service;
 using Faj.Client.Model.Player.Service.Interface;
+using Faj.Client.GUI.Layout;
 
 namespace Faj.Client.Model.Game
 {
@@ -57,7 +58,9 @@ namespace Faj.Client.Model.Game
         public override void Initialize(string playerId)
         {
             base.Initialize(playerId);
-            preloaderModel.Initialize();
+            var preloaderLayout = new PreloaderLayout(preloaderModel, coreBootstraper.GetApplicationConfig().GetPlatform());
+            preloaderLayout.Draw();
+            //preloaderModel.Initialize();
         }
 
         void OnStaticDownload()

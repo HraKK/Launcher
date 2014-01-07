@@ -1,9 +1,9 @@
-﻿using Uddle.GUISysytem.Interface;
-using System.Collections;
+﻿using System.Collections;
+using Uddle.GUI.Render.Interface;
 
 namespace Uddle.GUISysytem
 {
-    public abstract class GUIView : IGUIObserver
+    abstract class GUIView : IGUIObserver
     {
         public void Notify()
         {
