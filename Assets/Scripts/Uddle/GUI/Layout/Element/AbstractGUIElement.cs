@@ -3,30 +3,36 @@ using System;
 using UnityEngine;
 using Uddle.Service;
 using Uddle.GUI.Render.Pool.Service.Interface;
+using Uddle.GUI.Render.Pool.Item.Interface;
 
 namespace Uddle.GUI.Layout.Element
 {
 	abstract class AbstractGUIElement : IGUIElement
 	{
+        protected ISpriteItem spriteItem;
         protected SpriteRenderer spriteRenderer;
-        
+
         bool isEnabled = false;
         bool isHidden = false;
 
         public event Action<IGUIElement> OnVisibleEvent;
         public event Action<IGUIElement> OnHideEvent;
 
+        protected readonly ISpritePoolService spritePoolService;
+
         public AbstractGUIElement()
         {
-            spriteRenderer = ServiceProvider.Instance.GetService<ISpriteRendererPoolService>().Spawn();
-            UnityEngine.Debug.Log(spriteRenderer);
+            spritePoolService = ServiceProvider.Instance.GetService<ISpritePoolService>();
+            spriteItem = spritePoolService.Spawn();
+            spriteRenderer = spriteItem.GetSpriteRenderer();
         }
 
-        public void SetPosition(int x, int y)
+        public void SetPosition(float x, float y)
         {
             var position = spriteRenderer.transform.position;
-            position.x = x - Screen.width * 0.5f;
-            position.y = y - Screen.height * 0.5f;
+
+            position.x = x * 0.01f - Screen.width * 0.005f;
+            position.y = y * 0.01f - Screen.height * 0.005f;
 
             spriteRenderer.transform.position = position;
         }
@@ -50,18 +56,30 @@ namespace Uddle.GUI.Layout.Element
 
         void Render()
         {
-            
-
             if (false == isHidden && true == isEnabled)
             {
                 spriteRenderer.enabled = true;
+
+                if (OnVisibleEvent != null)
+                {
+                    OnVisibleEvent(this);
+                }
             }
             else
             {
                 spriteRenderer.enabled = false;
+
+                if (OnHideEvent != null)
+                {
+                    OnHideEvent(this);
+                }
             }
         }
 
-        public abstract void Disappear();
+        public virtual void Disappear()
+        {
+            spriteRenderer.sprite = null;
+            spritePoolService.Despawn(spriteItem);
+        }
 	}
 }

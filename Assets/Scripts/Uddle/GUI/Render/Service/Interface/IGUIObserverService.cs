@@ -1,12 +1,12 @@
 ﻿using Uddle.Service.Interface;
-using Uddle.GUI.Render.Interface;
+using Uddle.Observer.Interface;
 
 namespace Uddle.GUI.Render.Service.Interface
 {
 	interface IGUIObserverService : IService
 	{
-        void AddObserver(IGUIObserver observer);
-        void RemoveObserver(IGUIObserver observer);
+        void AddObserver(IObserver observer);
+        void RemoveObserver(IObserver observer);
         void Notify();
 	}
 }

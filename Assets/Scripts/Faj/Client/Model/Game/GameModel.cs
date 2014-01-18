@@ -14,12 +14,14 @@ using Faj.Client.Model.Game.Strategy.Server;
 using Faj.Client.Model.Player.Service;
 using Faj.Client.Model.Player.Service.Interface;
 using Faj.Client.GUI.Layout;
+using Faj.Client.GUI.Layout.Interface;
 
 namespace Faj.Client.Model.Game
 {
 	class GameModel : AbstractGameModel
 	{
         IPlayerModel playerModel;
+        IPreloaderLayout preloaderLayout;
 
         public GameModel(ICoreBootstraper coreBootstraper)
             : base(coreBootstraper)
@@ -35,6 +37,9 @@ namespace Faj.Client.Model.Game
         protected override void InitializePreloaderModel()
         {
             preloaderModel = new PreloaderModel();
+            var dependecyAwaiter = preloaderModel as IDependencyAwaiter;
+            dependecyAwaiter.OnDependenciesReleaseEvent += new Action(OnPreloaderRelease);
+            
         }
 
         protected override void InitializeServer()
@@ -58,9 +63,17 @@ namespace Faj.Client.Model.Game
         public override void Initialize(string playerId)
         {
             base.Initialize(playerId);
-            var preloaderLayout = new PreloaderLayout(preloaderModel, coreBootstraper.GetApplicationConfig().GetPlatform());
-            preloaderLayout.Draw();
-            //preloaderModel.Initialize();
+            preloaderLayout = new PreloaderLayout(preloaderModel, coreBootstraper.GetApplicationConfig().GetPlatform());
+            preloaderLayout.Draw();            
+        }
+
+        void OnPreloaderRelease()
+        {
+            preloaderLayout.Disappear();
+            var introLayout = new IntroLayout(coreBootstraper.GetApplicationConfig().GetPlatform());
+            introLayout.Draw();
+
+
         }
 
         void OnStaticDownload()

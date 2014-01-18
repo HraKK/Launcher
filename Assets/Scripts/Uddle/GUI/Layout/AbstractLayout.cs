@@ -6,6 +6,7 @@ using Uddle.GUI.Layout.Exception;
 using Uddle.GUI.Render.Service.Interface;
 using Uddle.GUI.Layout.Strategy.Interface;
 using Uddle.GUI.Layout.Interface;
+using Uddle.Observer.Interface;
 
 namespace Uddle.GUI.Layout
 {
@@ -14,12 +15,14 @@ namespace Uddle.GUI.Layout
         protected ILayoutStrategy layoutStrategy;
 
         readonly protected ApplicationPlatform platform;
+        readonly protected IGUIObserverService GUIObserverService;
 
         List<IGUIElement> elements = new List<IGUIElement>();
 
         public AbstractLayout(ApplicationPlatform platform)
         {
             this.platform = platform;
+            GUIObserverService = ServiceProvider.Instance.GetService<IGUIObserverService>();
 
             InitializeStrategy(platform);
 
@@ -53,12 +56,19 @@ namespace Uddle.GUI.Layout
         }
 
         void OnHide(IGUIElement element)
-        {            
+        {
+            if (element is IObserver)
+            {
+                GUIObserverService.RemoveObserver(element as IObserver);
+            }
         }
 
         void OnVisible(IGUIElement element)
         {
-            
+            if (element is IObserver)
+            {
+                GUIObserverService.AddObserver(element as IObserver);
+            }
         }
 
         public void Display()
@@ -68,8 +78,6 @@ namespace Uddle.GUI.Layout
             for (int i = 0; i < elementsCount; i++)
             {
                 elements[i].SetHidden(false);
-
-                
             }
         }
 
@@ -82,10 +90,22 @@ namespace Uddle.GUI.Layout
                 elements[i].SetHidden(true);
             }
         }
-
-        public void Disappear()
+        void RemoveElements()
         {
+            for (var i = 0; i < elements.Count; i++)
+            {
+                elements[i].OnHideEvent -= new System.Action<IGUIElement>(OnHide);
+                elements[i].OnVisibleEvent -= new System.Action<IGUIElement>(OnVisible);
+                elements[i].Disappear();
+                elements[i] = null;
+            }
+
             elements.Clear();
+        }
+
+        public virtual void Disappear()
+        {
+            RemoveElements();
             layoutStrategy.DoDisappearStrategy();
         }
 	}

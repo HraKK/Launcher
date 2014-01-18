@@ -55,9 +55,13 @@ namespace Uddle.Bootstrap
             var resourceManagerService = new ResourceManagerService(packageResourceManager);
             serviceProvider.SetService<IResourceManagerService>(resourceManagerService);
 
-            var spriteRendererPool = new SpriteRendererPool(applicationConfig.GetRendererCount());
-            var spriteRendererPoolService = new SpriteRendererPoolService(spriteRendererPool);
-            serviceProvider.SetService<ISpriteRendererPoolService>(spriteRendererPoolService);
+            var spritePool = new SpritePool(applicationConfig.GetRendererCount());
+            var spritePoolService = new SpritePoolService(spritePool);
+            serviceProvider.SetService<ISpritePoolService>(spritePoolService);
+
+            var mouseCollidableSpritePool = new MouseCollidableSpritePool(applicationConfig.GetRendererCount());
+            var mouseCollidableSpritePoolService = new MouseCollidableSpritePoolService(mouseCollidableSpritePool);
+            serviceProvider.SetService<IMouseCollidableSpritePoolService>(mouseCollidableSpritePoolService);
         }
     }
 }

@@ -6,7 +6,5 @@ namespace Uddle.Model.Preloader.Interface
     {
         event Action<int> OnTotalDependencyEvent;
         event Action<int> OnDependencyReleaseEvent;
-
-        void Initialize();
     }
 }

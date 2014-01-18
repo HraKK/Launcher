@@ -1,7 +1,7 @@
 ﻿using Uddle.GUI.Layout;
 using Uddle.Model.Preloader.Interface;
 using Uddle.Config.Interface;
-using Faj.Client.GUI.Layout.Strategy;
+using Faj.Client.GUI.Layout.Strategy.Preloader;
 using Faj.Client.GUI.Layout.Interface;
 using Uddle.GUI.Layout.Strategy.Interface;
 namespace Faj.Client.GUI.Layout
@@ -19,6 +19,11 @@ namespace Faj.Client.GUI.Layout
         {
             var layoutStrategyFactory = new PreloaderLayoutStrategyFactory(platform, this);
             layoutStrategy = layoutStrategyFactory.GetConcreteStrategy() as ILayoutStrategy;
+        }
+
+        public IPreloaderModel GetPreloaderModel()
+        {
+            return preloaderModel;
         }
 	}
 }

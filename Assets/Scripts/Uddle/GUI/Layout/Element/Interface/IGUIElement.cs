@@ -1,5 +1,4 @@
 ﻿using System;
-using Uddle.GUI.Render.Interface;
 using UnityEngine;
 
 namespace Uddle.GUI.Layout.Element.Interface
@@ -9,7 +8,7 @@ namespace Uddle.GUI.Layout.Element.Interface
         event Action<IGUIElement> OnVisibleEvent;
         event Action<IGUIElement> OnHideEvent;
 
-        void SetPosition(int x, int y);
+        void SetPosition(float x, float y);
 
         void SetEnabled(bool isEnabled);
         bool IsEnabled();

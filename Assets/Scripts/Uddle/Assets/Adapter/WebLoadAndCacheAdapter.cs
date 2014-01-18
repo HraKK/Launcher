@@ -16,12 +16,12 @@ namespace Uddle.Assets.Adapter
 {
 	class WebLoadAndCacheAdapter : ILoadAndCacheAdapter
 	{
-        private Dictionary<string, IDownloadPackage> loadingQueue = new Dictionary<string, IDownloadPackage>();
-        private List<string> downloadedPackages = new List<string>();
-        private IDownloadPackage currentDownloading;
-	    private IPackageService packageService;
-	    private int order = -1;
-        private readonly ICoroutineService coroutineService;
+        Dictionary<string, IDownloadPackage> loadingQueue = new Dictionary<string, IDownloadPackage>();
+        List<string> downloadedPackages = new List<string>();
+        IDownloadPackage currentDownloading;
+	    IPackageService packageService;
+	    int order = -1;
+        readonly ICoroutineService coroutineService;
 
 		public WebLoadAndCacheAdapter()
 		{
@@ -41,7 +41,7 @@ namespace Uddle.Assets.Adapter
 			Download();
 		}
 
-        private void AddToQueue(IDynamicPackage dynamicPackage, PackageDonwloadDelegate OnLoadEvent)
+        void AddToQueue(IDynamicPackage dynamicPackage, PackageDonwloadDelegate OnLoadEvent)
 		{
             var packageName = dynamicPackage.GetStaticPackage().name;
             if (IsHandled(packageName))
@@ -59,7 +59,7 @@ namespace Uddle.Assets.Adapter
             Add(dynamicPackage, OnLoadEvent, order);
 		}
 
-        private void AddToQueueHead(IDynamicPackage dynamicPackage, PackageDonwloadDelegate OnLoadEvent)
+        void AddToQueueHead(IDynamicPackage dynamicPackage, PackageDonwloadDelegate OnLoadEvent)
         {
             var packageName = dynamicPackage.GetStaticPackage().name;
             if (IsDownloading(packageName))
@@ -78,7 +78,7 @@ namespace Uddle.Assets.Adapter
             Add(dynamicPackage, OnLoadEvent);
         }
 
-        private void Add(IDynamicPackage dynamicPackage, PackageDonwloadDelegate OnLoadEvent, int order = 0)
+        void Add(IDynamicPackage dynamicPackage, PackageDonwloadDelegate OnLoadEvent, int order = 0)
         {
             var packageName = dynamicPackage.GetStaticPackage().name;
             var donwloadPackage = new DownloadPackage(dynamicPackage, OnLoadEvent, order);
@@ -86,7 +86,7 @@ namespace Uddle.Assets.Adapter
             loadingQueue.Add(packageName, donwloadPackage);             
         }
 
-        private IDownloadPackage GetLoadingPackage(string name)
+        IDownloadPackage GetLoadingPackage(string name)
         {
             IDownloadPackage package;
 
@@ -98,12 +98,12 @@ namespace Uddle.Assets.Adapter
             return package;
         }
 
-        private bool IsDownloaded(string name)
+        bool IsDownloaded(string name)
         {
             return downloadedPackages.Contains(name);
         }
 
-        private bool IsDownloading(string packageName)
+        bool IsDownloading(string packageName)
         {
             if (currentDownloading == null)
             {
@@ -113,12 +113,12 @@ namespace Uddle.Assets.Adapter
             return currentDownloading.GetPackage().GetStaticPackage().name == packageName;
         }
 
-        private bool InQueue(string packageName)
+        bool InQueue(string packageName)
         {
             return loadingQueue.Any(kvp => kvp.Key == packageName);
         }
 
-	    private bool IsHandled(string packageName)
+	    bool IsHandled(string packageName)
         {
 	        if (IsDownloading(packageName) || InQueue(packageName))
 	        {
@@ -136,12 +136,12 @@ namespace Uddle.Assets.Adapter
             }
         }
 
-        private bool IsBusy()
+        bool IsBusy()
         {
             return currentDownloading != null;
         }
 
-        private IDownloadPackage GetFirstPackage()
+        IDownloadPackage GetFirstPackage()
         {
             IDownloadPackage result = null;
             int order = Int32.MaxValue;
@@ -160,7 +160,7 @@ namespace Uddle.Assets.Adapter
             return result;
         }
 
-		private void Download()
+		void Download()
 		{
             if (IsBusy())
             {
@@ -177,14 +177,14 @@ namespace Uddle.Assets.Adapter
             coroutineService.StartCoroutine(LoadPackages);
 		}
 
-		private IEnumerator LoadPackages()
+		IEnumerator LoadPackages()
 		{            
 			while(!Caching.ready)
 			{
 				yield return null;
 			}
 
-		    var staticPackage = currentDownloading.GetPackage().GetStaticPackage();
+            var staticPackage = currentDownloading.GetPackage().GetStaticPackage();
 
             using (WWW www = WWW.LoadFromCacheOrDownload(staticPackage.url, staticPackage.version))
 			{

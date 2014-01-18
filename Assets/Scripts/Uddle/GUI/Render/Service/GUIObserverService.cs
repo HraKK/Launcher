@@ -1,6 +1,5 @@
 ﻿using Uddle.Observer.Interface;
 using Uddle.GUI.Render.Service.Interface;
-using Uddle.GUI.Render.Interface;
 
 namespace Uddle.GUI.Render.Service
 {
@@ -13,12 +12,12 @@ namespace Uddle.GUI.Render.Service
             this.observerCollection = observerCollection;
         }
 
-        public void AddObserver(IGUIObserver observer)
+        public void AddObserver(IObserver observer)
         {
             this.observerCollection.AddObserver(observer);
         }
 
-        public void RemoveObserver(IGUIObserver observer)
+        public void RemoveObserver(IObserver observer)
         {
             this.observerCollection.RemoveObserver(observer);
         }
