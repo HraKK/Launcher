@@ -22,6 +22,7 @@ namespace Uddle.GUI.Render.Pool
             poolObject.name = "SpriteRenderer " + rendererCount;
             poolObject.transform.parent = spawnPool.transform;
             var spriteRenderer = poolObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
+            spriteRenderer.enabled = false;
             return new SpriteItem(poolObject, spriteRenderer);
         }
 	}

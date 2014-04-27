@@ -1,26 +1,24 @@
 ﻿using Uddle.Strategy.Interface;
-using Uddle.Config.Interface;
+using Uddle.GUI.Layout.Strategy;
 using Faj.Client.GUI.Layout.Interface;
+using Uddle.Config.Interface;
+using Uddle.GUI.Layout.Interface;
 
 namespace Faj.Client.GUI.Layout.Strategy.Preloader
 {
-	class PreloaderLayoutStrategyFactory : IStrategyFactory
+    class PreloaderLayoutStrategyFactory : AbstractLayoutStrategyFactory
 	{
-        ApplicationPlatform platform;
-        IPreloaderLayout preloaderLayout;
-
-        public PreloaderLayoutStrategyFactory(ApplicationPlatform platform, IPreloaderLayout preloaderLayout)
+        public PreloaderLayoutStrategyFactory(ApplicationPlatform platform, ILayout layout)
+            : base(platform, layout)
         {
-            this.platform = platform;
-            this.preloaderLayout = preloaderLayout;
         }
 
-        public IStrategy GetConcreteStrategy()
+        public override IStrategy GetConcreteStrategy()
         {
             switch (platform)
             {
                 default:
-                    return new IoSPreloaderLayoutStrategy(preloaderLayout);
+                    return new IoSPreloaderLayoutStrategy(layout as IPreloaderLayout);
             }
         }
 	}

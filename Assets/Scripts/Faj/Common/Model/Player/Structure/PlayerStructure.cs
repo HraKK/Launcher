@@ -13,5 +13,8 @@ namespace Faj.Common.Model.Player.Structure
         public int level;
         [ProtoMember(2)]
         public Dictionary<string, int> resources = new Dictionary<string, int>();
+        [ProtoMember(3)]
+        public Dictionary<string, int> levels = new Dictionary<string, int>();
+
 	}
 }

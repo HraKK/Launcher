@@ -12,23 +12,31 @@ namespace Uddle.GUI.Layout.Element
         protected ISpriteItem spriteItem;
         protected SpriteRenderer spriteRenderer;
 
-        bool isEnabled = false;
-        bool isHidden = false;
+        protected bool isEnabled = false;
+        protected bool isHidden = false;
 
         public event Action<IGUIElement> OnVisibleEvent;
         public event Action<IGUIElement> OnHideEvent;
 
         protected readonly ISpritePoolService spritePoolService;
 
+        protected float x;
+        protected float y;
+
         public AbstractGUIElement()
         {
             spritePoolService = ServiceProvider.Instance.GetService<ISpritePoolService>();
             spriteItem = spritePoolService.Spawn();
             spriteRenderer = spriteItem.GetSpriteRenderer();
+            spriteRenderer.enabled = false;
+
         }
 
         public void SetPosition(float x, float y)
         {
+            this.x = x;
+            this.y = y;
+
             var position = spriteRenderer.transform.position;
 
             position.x = x * 0.01f - Screen.width * 0.005f;
@@ -54,7 +62,7 @@ namespace Uddle.GUI.Layout.Element
             Render();
         }
 
-        void Render()
+        protected virtual void Render()
         {
             if (false == isHidden && true == isEnabled)
             {

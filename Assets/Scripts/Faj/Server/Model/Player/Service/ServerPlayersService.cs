@@ -1,6 +1,6 @@
 ﻿using Faj.Server.Model.Player.Service.Interface;
 using System.Collections.Generic;
-using Faj.Server.Model.Player.Interface;
+using Faj.Common.Model.Player.Interface;
 
 namespace Faj.Server.Model.Player.Service
 {
@@ -15,6 +15,7 @@ namespace Faj.Server.Model.Player.Service
             if (!playerModels.TryGetValue(playerId, out playerModel))
             {
                 playerModel = new PlayerModel(playerId);
+                playerModel.Load();
                 playerModels.Add(playerId, playerModel);
             }
 

@@ -2,28 +2,38 @@
 using System.Runtime.CompilerServices;
 using Faj.Common.Model.Player.Resource.Interface;
 using Faj.Common.Model.Player.Structure;
+using Faj.Common.Model.Player.Interface;
 
 namespace Faj.Common.Model.Player.Resource
 {
 	class PlayerResources : IPlayerResources
 	{
-        readonly PlayerStructure playerStructure;
+        readonly IPlayerModel playerModel;
 
-        public PlayerResources(PlayerStructure playerStructure)
+        public PlayerResources(IPlayerModel playerModel)
         {
-            this.playerStructure = playerStructure;
+            this.playerModel = playerModel;
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Dictionary<string, int> GetResources()
         {
-            return playerStructure.resources;
+            return playerModel.GetPlayerStructure().resources;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public int GetResource(string resource)
+        {
+            int value = 0;
+            GetResources().TryGetValue(resource, out value);
+
+            return value;
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         void SetResources(Dictionary<string, int> resources)
         {
-            playerStructure.resources = resources;
+            playerModel.GetPlayerStructure().resources = resources;
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]

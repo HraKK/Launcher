@@ -1,23 +1,24 @@
-﻿using Uddle.Strategy.Interface;
+﻿using Uddle.GUI.Layout.Strategy;
+using Uddle.Strategy.Interface;
+using Faj.Client.GUI.Layout.Interface;
 using Uddle.Config.Interface;
+using Uddle.GUI.Layout.Interface;
 
 namespace Faj.Client.GUI.Layout.Strategy.Intro
 {
-	class IntroLayoutStrategyFactory : IStrategyFactory
+    class IntroLayoutStrategyFactory : AbstractLayoutStrategyFactory
 	{
-        ApplicationPlatform platform;
-
-        public IntroLayoutStrategyFactory(ApplicationPlatform platform)
+        public IntroLayoutStrategyFactory(ApplicationPlatform platform, ILayout layout)
+            : base(platform, layout)
         {
-            this.platform = platform;
         }
 
-        public IStrategy GetConcreteStrategy()
+        public override IStrategy GetConcreteStrategy()
         {
             switch (platform)
             {
                 default:
-                    return new IoSIntroLayoutStrategy();
+                    return new IoSIntroLayoutStrategy(layout as IIntroLayout);
             }
         }
 	}

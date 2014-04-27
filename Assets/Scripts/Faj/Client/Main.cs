@@ -23,20 +23,16 @@ namespace Faj.Client
             var coroutineService = ServiceProvider.Instance.GetService<ICoroutineService>();
             coroutineService.OnCouroutine += new CoroutineProxy(OnCoroutine);
             gameModel.OnInitializeCompleteEvent += new System.Action(OnInitializeComplete);
-            gameModel.Initialize("test");
+            gameModel.Initialize("testPlayer2");
             
             GUIObserverService = ServiceProvider.Instance.GetService<IGUIObserverService>();
         }
 
         private void OnInitializeComplete()
         {
-            
-
             UnityEngine.Debug.Log("initial compl");
             
             gameModel.Run();
-
-            
         }
 
         private void Update()
@@ -45,7 +41,7 @@ namespace Faj.Client
         }
 
         private void OnGUI()
-        {
+        {            
             GUIObserverService.Notify();
         }
 

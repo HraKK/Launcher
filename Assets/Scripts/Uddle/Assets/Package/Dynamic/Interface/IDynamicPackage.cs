@@ -13,5 +13,6 @@ namespace Uddle.Assets.Package.Dynamic.Interface
         void SetBundle(AssetBundle bundle);
         IStaticPackage GetStaticPackage();
         void Loaded();
+        T Get<T>(string key);
 	}
 }

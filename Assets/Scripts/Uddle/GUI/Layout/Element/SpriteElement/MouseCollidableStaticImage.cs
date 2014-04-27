@@ -19,7 +19,9 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
             mouseCollidableSpritePoolService = ServiceProvider.Instance.GetService<IMouseCollidableSpritePoolService>();
             mouseCollidableSpriteItem = mouseCollidableSpritePoolService.Spawn();
             spriteRenderer = mouseCollidableSpriteItem.GetSpriteRenderer();
+            spriteRenderer.enabled = false;
             mouseCollider = mouseCollidableSpriteItem.GetMouseCollider();
+            
                         
             Sprite sprite = new Sprite();
             sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
@@ -27,8 +29,36 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
 
             var gameObject = mouseCollidableSpriteItem.GetGameObject();
             collider = gameObject.AddComponent<PolygonCollider2D>();
+            collider.enabled = false;
         }
 
+        public MouseCollidableStaticImage(Sprite sprite)
+        {
+            mouseCollidableSpritePoolService = ServiceProvider.Instance.GetService<IMouseCollidableSpritePoolService>();
+            mouseCollidableSpriteItem = mouseCollidableSpritePoolService.Spawn();
+            spriteRenderer = mouseCollidableSpriteItem.GetSpriteRenderer();
+            spriteRenderer.enabled = false;
+            mouseCollider = mouseCollidableSpriteItem.GetMouseCollider();
+
+            spriteRenderer.sprite = sprite;
+
+            var gameObject = mouseCollidableSpriteItem.GetGameObject();
+            collider = gameObject.AddComponent<PolygonCollider2D>();
+            collider.enabled = false;
+        }
+
+        protected override void Render()
+        {
+            if (false == isHidden && true == isEnabled)
+            {
+                collider.enabled = true;
+            }
+            else
+            {
+                collider.enabled = false;
+            }
+            base.Render();
+        }
         public IMouseCollider GetMouseCollider()
         {
             return mouseCollider;

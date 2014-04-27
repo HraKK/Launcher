@@ -1,13 +1,15 @@
 ﻿using Faj.Common.Model.Player.Resource.Interface;
 using Faj.Common.Model.Player.Structure;
+using System;
 
 namespace Faj.Client.Model.Player.Interface
 {
-    interface IPlayerModel
+    interface IPlayerModel : Faj.Common.Model.Player.Interface.IPlayerModel
 	{
-        void Load();
-        void Save();
-        IPlayerResources GetResources();
-        void Initialize(PlayerStructure playerStructure);
+        void SetStructure(PlayerStructure playerStructure);
+
+        event Action<LocationEnum> OnChangeLocation;
+        void ChangeLocation(LocationEnum location);
+        LocationEnum GetLocation();
 	}
 }

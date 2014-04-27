@@ -8,6 +8,7 @@ namespace Faj.Server.Router
         protected override void InitializeControllers()
         {
             controllers.Add("initialize", new InitializeController());
+            controllers.Add("player", new PlayerController());
         }
 	}
 }

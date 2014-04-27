@@ -14,6 +14,8 @@ namespace Uddle.Assets.Package.Dynamic
 
         private readonly IStaticPackage package;
         private AssetBundle assetBundle;
+        private bool isLoaded = false;
+        private Object[] container;
 
         public DynamicPackage(IStaticPackage package)
         {
@@ -37,7 +39,36 @@ namespace Uddle.Assets.Package.Dynamic
 
         public void Unload()
         {
+            this.container = null;            
             assetBundle.Unload(true);
+        }
+
+        protected void Load()
+        {
+            this.container = assetBundle.LoadAll();
+        }
+
+        public T Get<T>(string key)
+        {
+            if (false == isLoaded)
+            {
+                this.Load();
+            }
+
+            T result = default(T);
+
+            foreach (var item in container)
+            {
+                if (item.name != key)
+                {
+                    continue;
+                }
+
+                result = (T)Convert.ChangeType(item, typeof(T));
+            }
+
+            return result;
+
         }
 
         public Object GetObject(string objectName)

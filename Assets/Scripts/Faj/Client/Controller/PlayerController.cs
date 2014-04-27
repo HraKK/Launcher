@@ -23,7 +23,7 @@ namespace Faj.Client.Controller
             var playerContent = content as IPlayerContent;
             var playerStructure = playerContent.GetPlayerStructure();
 
-            GetPlayerModel().Initialize(playerStructure);
+            GetPlayerModel().SetStructure(playerStructure);
         }
 
         public IPlayerModel GetPlayerModel()

@@ -1,5 +1,4 @@
-﻿using Faj.Server.Model.Player.Interface;
-using Faj.Common.Model.Player.Structure;
+﻿using Faj.Common.Model.Player.Structure;
 using Faj.Server.Model.Player.Dao.Interface;
 using Faj.Server.Model.Player.Dao;
 using Uddle.Service;
@@ -8,6 +7,9 @@ using Faj.Server.Model.Player.Exception;
 using Faj.Server.Model.Player.Registration;
 using Faj.Common.Model.Player.Resource.Interface;
 using Faj.Common.Model.Player.Resource;
+using Faj.Common.Model.Player.Interface;
+using Faj.Common.Model.Player.Level.Interface;
+using Faj.Common.Model.Player.Level;
 
 namespace Faj.Server.Model.Player
 {
@@ -20,6 +22,7 @@ namespace Faj.Server.Model.Player
 
         PlayerStructure playerStructure;
         readonly IPlayerResources playerResources;
+        readonly IPlayerLevels playerLevels;
 
         public PlayerModel(string playerId)
         {
@@ -28,7 +31,14 @@ namespace Faj.Server.Model.Player
             var daoFactory = ServiceProvider.Instance.GetService<IDaoFactory>();
             playerDao = daoFactory.GetServerPlayerDao();
             playerStructure = new PlayerStructure();
-            playerResources = new PlayerResources(playerStructure);
+            playerResources = new PlayerResources(this);
+            playerLevels = new PlayerLevels(this);
+
+        }
+
+        public IPlayerLevels GetLevels()
+        {
+            return playerLevels;
         }
 
         public IPlayerResources GetResources()
@@ -36,7 +46,7 @@ namespace Faj.Server.Model.Player
             return playerResources;
         }
 
-        void Load()
+        public void Load()
         {
             try
             {
@@ -53,15 +63,11 @@ namespace Faj.Server.Model.Player
 
         public void Save()
         {
+            playerDao.Save(playerId, GetPlayerStructure());
         }
 
         public PlayerStructure GetPlayerStructure()
         {
-            if (!isLoaded)
-            {
-                Load();
-            }
-
             return playerStructure;
         }
 	}

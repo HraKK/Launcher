@@ -1,5 +1,5 @@
 ﻿using Uddle.Service.Interface;
-using Faj.Server.Model.Player.Interface;
+using Faj.Common.Model.Player.Interface;
 
 namespace Faj.Server.Model.Player.Service.Interface
 {

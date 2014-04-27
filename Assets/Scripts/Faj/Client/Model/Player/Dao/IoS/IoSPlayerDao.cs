@@ -26,8 +26,8 @@ namespace Faj.Client.Model.Player.Dao.IoS
 
         public void Save(string playerId, PlayerStructure playerStructure)
         {
-            var playerContent = new PlayerContent(playerStructure);
-            var message = new SimpleMessage("player", "save", playerContent);
+            var idContent = new IdContent(playerId);
+            var message = new SimpleMessage("player", "save", idContent);
             routerService.Route(message);            
         }
 	}

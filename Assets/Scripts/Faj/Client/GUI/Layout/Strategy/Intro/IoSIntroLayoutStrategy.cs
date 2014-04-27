@@ -2,48 +2,54 @@
 using Uddle.Assets.Package.Service.Interface;
 using Uddle.GUI.Layout.Strategy.Interface;
 using UnityEngine;
+using Uddle.GUI.Layout.Element.SpriteElement;
+using UnityEditor;
+using System.Collections.Generic;
+using UnityEditorInternal;
+using Uddle.GUI.Layout.Element.AnimationElement;
+using Uddle.Dependency.Interface;
+using Faj.Client.GUI.Layout.Interface;
 
 namespace Faj.Client.GUI.Layout.Strategy.Intro
 {
     class IoSIntroLayoutStrategy : ILayoutStrategy
     {
         readonly IPackageService packageService;
-        Sprite[] atlas;
+        IIntroLayout introLayout;
+        AnimationElement introLogo;
 
-        public IoSIntroLayoutStrategy()
+        public IoSIntroLayoutStrategy(IIntroLayout introLayout)
         {
+            this.introLayout = introLayout;
             packageService = ServiceProvider.Instance.GetService<IPackageService>();
         }
 
         public void DoInitializeStrategy()
         {
             var package = packageService.GetPackage("prefab_ui");
-            var tex2D  = package.GetBundle().Load("intro_atlas", typeof(Texture2D)) as Texture2D;
-            var sp = package.GetBundle().Load("intro_atlas_0", typeof(Sprite)) as Sprite;
-            UnityEngine.Debug.Log("ROOOOT");
-            UnityEngine.Debug.Log(tex2D);
-            UnityEngine.Debug.Log(sp);
-            
-
-            var d = package.GetBundle().LoadAll();
-            for (var i = 0; i < d.Length; i++)
-            {
-                UnityEngine.Debug.Log(d[i]);
-            }
-            
+            Sprite[] intro = new Sprite[2];
+            intro[0] = package.Get<Sprite>("intro_atlas_0");
+            intro[1] = package.Get<Sprite>("intro_atlas_1");
+            introLogo = new AnimationElement(intro);
+            introLogo.SetLoop(false);
+            introLogo.OnReleaseEvent += new System.Action<IDependency>(OnRelease);
         }
+
+        protected void OnRelease(IDependency dependency)
+        {
+            introLayout.Release();
+        }
+
 
         public void DoStrategy()
         {
+            introLayout.AddElement(introLogo);
+            introLogo.Play();
             UnityEngine.Debug.Log("WOOOOT");
-            UnityEngine.Debug.Log(atlas);
-
         }
 
         public void DoDisappearStrategy()
         {
-
-            atlas = null;
         }
     }
 }

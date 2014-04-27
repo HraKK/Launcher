@@ -1,6 +1,6 @@
 ﻿using Uddle.Static;
 using Faj.Client.Model.Preloader;
-using Faj.Client.Model.Static;
+using Faj.Common.Model.Static;
 using Uddle.Static.Service;
 using Uddle.Service;
 using Uddle.Static.Service.Interface;
@@ -22,6 +22,9 @@ namespace Faj.Client.Model.Game
 	{
         IPlayerModel playerModel;
         IPreloaderLayout preloaderLayout;
+        IIntroLayout introLayout;
+        IPlayerLayout playerLayout;
+        ISelectLevelLayout selectLevelLayout;
 
         public GameModel(ICoreBootstraper coreBootstraper)
             : base(coreBootstraper)
@@ -70,9 +73,47 @@ namespace Faj.Client.Model.Game
         void OnPreloaderRelease()
         {
             preloaderLayout.Disappear();
-            var introLayout = new IntroLayout(coreBootstraper.GetApplicationConfig().GetPlatform());
-            introLayout.Draw();
+            introLayout = new IntroLayout(coreBootstraper.GetApplicationConfig().GetPlatform());
 
+            var introDependency = introLayout as IDependency;
+            introDependency.OnReleaseEvent += new Action<IDependency>(OnReleaseIntro);
+
+            introLayout.Draw();
+        }
+
+        void OnReleaseIntro(IDependency dependency)
+        {
+            var introDependency = introLayout as IDependency;
+            introDependency.OnReleaseEvent -= new Action<IDependency>(OnReleaseIntro);
+            introLayout.Disappear();
+
+
+            var platform = coreBootstraper.GetApplicationConfig().GetPlatform();
+            playerLayout = new PlayerLayout(platform);
+            selectLevelLayout = new SelectLevelLayout(platform);
+            playerLayout.Draw();
+            selectLevelLayout.Draw();
+            selectLevelLayout.Hide();
+            playerModel.OnChangeLocation += new Action<LocationEnum>(OnChangeLocation);
+            playerModel.ChangeLocation(LocationEnum.Upgrade);
+        }
+
+        void OnChangeLocation(LocationEnum location)
+        {
+            switch (location)
+            {
+                case LocationEnum.Upgrade:
+                    UnityEngine.Debug.Log("To Upgrade");
+                    selectLevelLayout.Hide();
+                    playerLayout.Display();
+                    break;
+                case LocationEnum.SelectLevel:
+                    UnityEngine.Debug.Log("To Select Level");
+                    selectLevelLayout.Display();
+                    playerLayout.Hide();
+                    break;
+
+            }
 
         }
 

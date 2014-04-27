@@ -37,7 +37,6 @@ namespace Uddle.Bootstrap
 
         public void Bootstrap()
         {
-            UnityEngine.Debug.Log("start downl");
             GetCoroutineService().StartCoroutine(DownloadXML);
         }
 
