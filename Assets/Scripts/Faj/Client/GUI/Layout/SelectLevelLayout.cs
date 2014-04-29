@@ -12,6 +12,7 @@ using Uddle.Service;
 using System.Collections.Generic;
 using Faj.Client.Model.Player.Interface;
 using Faj.Client.Model.Player.Service.Interface;
+using Faj.Common.Static.Level.Open.Collection.Interface;
 
 namespace Faj.Client.GUI.Layout
 {
@@ -33,6 +34,9 @@ namespace Faj.Client.GUI.Layout
             levelCollection = staticContainerService.GetStaticCollection<ILevelCollection>("levels");
             var layoutStrategyFactory = new SelectLevelLayoutStrategyFactory(platform, this);
             layoutStrategy = layoutStrategyFactory.GetConcreteStrategy() as ILayoutStrategy;
+
+            var loc = staticContainerService.GetStaticCollection<ILevelOpenCollection>("levels_open_contract");
+            UnityEngine.Debug.Log(loc);
         }
 
         public ILevelCollection GetLevels()

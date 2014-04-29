@@ -14,15 +14,15 @@ namespace Faj.Common.Model.Static.Parser
         public IStaticCollection Parse(XDocument document)
         {
             int i = 0;
-            var playerInitializeCollection = new LevelCollection();
+            var levelCollection = new LevelCollection();
             foreach (var element in document.Root.Elements())
             {
                 i++;
                 var item = ParseItem(element);
-                playerInitializeCollection.AddItem(i.ToString(), item);
+                levelCollection.AddItem(i.ToString(), item);
             }
 
-            return playerInitializeCollection;
+            return levelCollection;
         }
 
         ILevelItem ParseItem(XElement element)

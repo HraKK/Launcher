@@ -1,4 +1,5 @@
 ﻿using Uddle.Static.Service.Interface;
+using Uddle.Static.Interface;
 using Uddle.Static.Collection.Interface;
 
 namespace Uddle.Static.Service
@@ -12,7 +13,7 @@ namespace Uddle.Static.Service
             this.staticContainer = staticContainer;
         }
 
-        public TStaticCollection GetStaticCollection<TStaticCollection>(string name)
+        public TStaticCollection GetStaticCollection<TStaticCollection>(string name) where TStaticCollection : IStaticCollection
         {
             return staticContainer.GetStaticCollection<TStaticCollection>(name);
         }

@@ -9,8 +9,8 @@ using System.Collections.Generic;
 using Uddle.Static.Collection.Interface;
 using Uddle.Static.Exception;
 using Faj.Common.Model.Static.PlayerInitialize.Collection.Interface;
-using Faj.Common.Model.Static.PlayerInitialize.Collection;
 using Uddle.Static.Parser.Interface;
+using Uddle.Static.Interface;
 
 namespace Uddle.Static
 {
@@ -57,7 +57,7 @@ namespace Uddle.Static
             return staticContainer;
         }
 
-        public TStaticCollection GetStaticCollection<TStaticCollection>(string name)
+        public TStaticCollection GetStaticCollection<TStaticCollection>(string name) where TStaticCollection : IStaticCollection
         {
             if (isInitialized == false)
             {
@@ -81,7 +81,7 @@ namespace Uddle.Static
             return XDocument.Load(reader);
         }
 
-        protected void addCollection(IStaticParser parser, string name)
+        protected void AddCollection(string name, IStaticParser parser)
         {
             var document = GetStaticDocument(name);
             var collection = parser.Parse(document);
