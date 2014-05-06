@@ -4,10 +4,8 @@ using Faj.Common.Model.Player.Level.Interface;
 
 namespace Faj.Common.Model.Player.Interface
 {
-	interface IPlayerModel
+    interface IPlayerModel : Uddle.Model.Player.Interface.IPlayerModel
 	{
-        void Load();
-        void Save();
         IPlayerResources GetResources();
         IPlayerLevels GetLevels();
         PlayerStructure GetPlayerStructure();

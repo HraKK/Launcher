@@ -15,6 +15,8 @@ using Faj.Client.Model.Player.Service;
 using Faj.Client.Model.Player.Service.Interface;
 using Faj.Client.GUI.Layout;
 using Faj.Client.GUI.Layout.Interface;
+using Uddle.Dynamic.Contract.Module;
+using Uddle.Dynamic.Contract.Module.Interface;
 
 namespace Faj.Client.Model.Game
 {

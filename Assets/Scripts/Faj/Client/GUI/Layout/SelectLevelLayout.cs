@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Faj.Client.Model.Player.Interface;
 using Faj.Client.Model.Player.Service.Interface;
 using Faj.Common.Static.Level.Open.Collection.Interface;
+using Faj.Server.Dynamic.Contract;
 
 namespace Faj.Client.GUI.Layout
 {
@@ -36,7 +37,21 @@ namespace Faj.Client.GUI.Layout
             layoutStrategy = layoutStrategyFactory.GetConcreteStrategy() as ILayoutStrategy;
 
             var loc = staticContainerService.GetStaticCollection<ILevelOpenCollection>("levels_open_contract");
-            UnityEngine.Debug.Log(loc);
+
+            var playerModelService = ServiceProvider.Instance.GetService<Faj.Server.Model.Player.Service.Interface.IServerPlayersService>();
+            var playerModel = playerModelService.GetPlayerInstance("testPlayer2") as Uddle.Model.Player.Interface.IPlayerModel;
+            var staticContract = loc.GetItem("level_1");
+
+            var contract = new FinishedLevelContract(staticContract, playerModel);
+            UnityEngine.Debug.Log("contract start: " + contract);
+            UnityEngine.Debug.Log("contract start: " + contract.Start());
+
+            //foreach (var i in loc.GetItem("level_2").GetCheckFinish())
+            //{
+            //    UnityEngine.Debug.Log("###");
+            //    var cond = i.GetCondition() as Faj.Common.Static.Contract.Condition.Interface.IIdCondition;
+            //    UnityEngine.Debug.Log("ID: " + cond.GetId());
+            //}
         }
 
         public ILevelCollection GetLevels()

@@ -4,6 +4,7 @@ namespace Uddle.Static.Contract.Module.Interface
 {
 	interface IContractModule
 	{
+        string GetName();
         ICondition GetCondition();
 	}
 }

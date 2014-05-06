@@ -6,6 +6,9 @@ using Uddle.Static.Parser.Interface;
 using Faj.Common.Static.Level.Open.Collection.Item.Interface;
 using Faj.Common.Static.Level.Open.Collection.Item;
 using Faj.Common.Static.Level.Collection.Open;
+using Uddle.Static.Contract.Module.Interface;
+using Faj.Common.Static.Contract.Condition;
+using Faj.Common.Static.Contract.Module;
 
 namespace Faj.Common.Model.Static.Parser
 {
@@ -13,6 +16,7 @@ namespace Faj.Common.Model.Static.Parser
     {
         public IStaticCollection Parse(XDocument document)
         {
+            
             int i = 0;
             var levelOpenCollection = new LevelOpenCollection();
             foreach (var element in document.Root.Elements())
@@ -24,7 +28,7 @@ namespace Faj.Common.Model.Static.Parser
                     continue;
                 }
 
-                levelOpenCollection.AddItem(i.ToString(), item);
+                levelOpenCollection.AddItem(item.GetId(), item);
             }
 
             return levelOpenCollection;
@@ -32,18 +36,57 @@ namespace Faj.Common.Model.Static.Parser
 
         ILevelOpenItem ParseItem(XElement element)
         {
+            var checkStart = new List<IContractModule>();
+            var checkFinish = new List<IContractModule>();
+            var award = new List<IContractModule>();
 
-            if (element.Element("resources") != null)
+            var id = (string)element.Element("id");
+            
+            if (element.Element("checkstart") != null)
             {
-                foreach (var resourceElement in element.Element("resources").Elements())
+                foreach (var checkStartElement in element.Element("checkstart").Elements())
                 {
-                    //resources.Add(resourceElement.Name.LocalName, (int)resourceElement);
+                    if (checkStartElement.Name == "finishedlevel")
+                    {
+                        var idElement = checkStartElement.Element("id");
+                        var idCondition = new IdCondition((string)idElement);
+                        var finishedLevelModule = new FinishedLevelModule(idCondition);
+                        checkStart.Add(finishedLevelModule);
+                    }
                 }
             }
 
-            //var item = new LevelOpenItem(id, chapter, type);
+            if (element.Element("checkfinish") != null)
+            {
+                foreach (var checkFinishElement in element.Element("checkfinish").Elements())
+                {
+                    if (checkFinishElement.Name == "finishedquest")
+                    {
+                        var idElement = checkFinishElement.Element("id");
+                        var idCondition = new IdCondition((string)idElement);
+                        var finishedQuestModule = new FinishedQuestModule(idCondition);
+                        checkFinish.Add(finishedQuestModule);
+                    }
+                }
+            }
 
-            return null;
+            if (element.Element("award") != null)
+            {
+                foreach (var awardElement in element.Element("award").Elements())
+                {
+                    if (awardElement.Name == "finishedlevel")
+                    {
+                        var idElement = awardElement.Element("id");
+                        var idCondition = new IdCondition((string)idElement);
+                        var finishedLevelModule = new FinishedLevelModule(idCondition);
+                        award.Add(finishedLevelModule);
+                    }
+                }
+            }
+
+            var item = new LevelOpenItem(id, checkStart, checkFinish, null, award);
+
+            return item;
         }
     }
 }
