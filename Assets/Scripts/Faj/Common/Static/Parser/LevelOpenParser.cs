@@ -84,7 +84,7 @@ namespace Faj.Common.Model.Static.Parser
                 }
             }
 
-            var item = new LevelOpenItem(id, checkStart, checkFinish, null, award);
+            var item = new LevelOpenItem(id, checkStart, checkFinish, null, award, null);
 
             return item;
         }

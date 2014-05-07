@@ -4,18 +4,18 @@ using Uddle.Static.Contract.Module;
 
 namespace Faj.Common.Static.Contract.Module
 {
-	class FinishedQuestModule: AbstractContractModule
-	{
-        protected const string moduleName = "finishedquest";
+    class ResourceModule : AbstractContractModule
+    {
+        protected const string moduleName = "resource";
 
-        public FinishedQuestModule(IIdCondition condition)
+        public ResourceModule(IDictionaryIntCondition condition)
         {
-            this.condition = condition;
+            this.condition = condition as ICondition;
         }
 
         public override string GetName()
         {
             return moduleName;
         }
-	}
+    }
 }

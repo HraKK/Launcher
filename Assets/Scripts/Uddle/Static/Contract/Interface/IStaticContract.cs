@@ -11,5 +11,6 @@ namespace Uddle.Static.Contract.Interface
         List<IContractModule> GetCheckFinish();
         List<IContractModule> GetPay();
         List<IContractModule> GetAward();
+        List<IContractModule> GetSkip();
 	}
 }

@@ -13,18 +13,21 @@ namespace Uddle.Static.Contract
         readonly List<IContractModule> checkFinish;
         readonly List<IContractModule> pay;
         readonly List<IContractModule> award;
+        readonly List<IContractModule> skip;
 
         public AbstractContract(string id,
             List<IContractModule> checkStart,
             List<IContractModule> checkFinish,
             List<IContractModule> pay,
-            List<IContractModule> award)
+            List<IContractModule> award,
+            List<IContractModule> skip)
         {
             this.id = id;
             this.checkStart = checkStart;
             this.checkFinish = checkFinish;
             this.pay = pay;
             this.award = award;
+            this.skip = skip;
         }       
 
         public string GetId()
@@ -50,6 +53,11 @@ namespace Uddle.Static.Contract
         public List<IContractModule> GetAward()
         {
             return award;
+        }
+
+        public List<IContractModule> GetSkip()
+        {
+            return skip;
         }
 
 	}

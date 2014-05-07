@@ -11,8 +11,9 @@ namespace Faj.Common.Static.Level.Open.Collection.Item
             List<IContractModule> checkStart,
             List<IContractModule> checkFinish,
             List<IContractModule> pay,
-            List<IContractModule> award) :
-            base(id, checkStart, checkFinish, pay, award)
+            List<IContractModule> award,
+            List<IContractModule> skip) :
+            base(id, checkStart, checkFinish, pay, award, skip)
         {
         }
     }
