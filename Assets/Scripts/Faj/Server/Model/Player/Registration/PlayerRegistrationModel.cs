@@ -25,7 +25,7 @@ namespace Faj.Server.Model.Player.Registration
             var initialResources = initializeItem.GetResources();
             var startLevel = initializeItem.GetStartLevel();
             
-            playerModel.GetResources().AwardResources(initialResources);
+            //playerModel.GetResources().AwardResources(initialResources);
             playerModel.GetLevels().SetLevelLastTime(startLevel, 0);
         }
 	}

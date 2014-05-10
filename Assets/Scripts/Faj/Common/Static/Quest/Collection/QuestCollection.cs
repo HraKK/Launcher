@@ -2,6 +2,7 @@
 using Faj.Common.Static.Quest.Collection.Interface;
 using Faj.Common.Static.Quest.Collection.Item.Interface;
 using System.Collections.Generic;
+using System;
 
 namespace Faj.Common.Static.Quest.Collection
 {
@@ -17,7 +18,7 @@ namespace Faj.Common.Static.Quest.Collection
                     continue;
                 }
 
-                if (item.GetTarget() != "" && item.GetTarget() != target)
+                if (false == String.IsNullOrEmpty(item.GetTarget()) && item.GetTarget() != target)
                 {
                     continue;
                 }

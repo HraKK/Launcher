@@ -27,11 +27,6 @@ namespace Faj.Server.Dynamic.Contract.Module
 
         public void Award(IStaticContract contract, IPlayerModel playerModel, ICondition condition)
         {
-            var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
-            var finishLevelCondition = condition as IIdCondition;
-            var levelId = finishLevelCondition.GetId();
-
-            serverPlayerModel.GetLevels().SetLevelLastTime(levelId, 0);
         }
 	}
 }

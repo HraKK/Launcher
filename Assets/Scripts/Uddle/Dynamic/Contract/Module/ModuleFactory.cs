@@ -17,8 +17,10 @@ namespace Uddle.Dynamic.Contract.Module
         {
             IContractModule module;
 
+            
             if (false == modules.TryGetValue(name, out module))
             {
+                UnityEngine.Debug.Log(modules.Count);
                 throw new NotExistModuleException("Module " + name + " not exist in dynamic contracts");
             }
 

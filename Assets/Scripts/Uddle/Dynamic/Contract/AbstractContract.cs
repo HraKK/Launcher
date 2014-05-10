@@ -67,8 +67,6 @@ namespace Uddle.Dynamic.Contract
         protected bool CheckStart()
         {
             var checkStartModules = contract.GetCheckStart();
-            UnityEngine.Debug.Log("qtempl: " + contract.GetId());
-            UnityEngine.Debug.Log("qtempl m: " + checkStartModules.Count);
             return Check(checkStartModules);
         }
 
@@ -89,9 +87,7 @@ namespace Uddle.Dynamic.Contract
 
             foreach (var staticModule in checkModules)
             {
-                UnityEngine.Debug.Log("nn" + staticModule.GetName());
                 var module = moduleFactory.GetModule(staticModule.GetName());
-                UnityEngine.Debug.Log("oo" + module);
                 var checkResult = module.Check(contract, playerModel, staticModule.GetCondition());
 
                 if (false == checkResult)

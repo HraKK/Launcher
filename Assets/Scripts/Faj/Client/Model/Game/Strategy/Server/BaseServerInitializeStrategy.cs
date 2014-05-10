@@ -27,6 +27,7 @@ namespace Faj.Client.Model.Game.Strategy.Server
             var moduleFactory = new ModuleFactory();
 
             moduleFactory.AddModule("finishedlevel", new FinishedLevelModule());
+            moduleFactory.AddModule("finishedquests", new FinishedQuestModule());
             ServiceProvider.Instance.SetService<IModuleFactory>(moduleFactory);
         }
     }
