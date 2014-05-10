@@ -5,11 +5,13 @@ using Uddle.Service;
 using Faj.Client.Dao.Interface;
 using Faj.Server.Model.Player.Exception;
 using Faj.Server.Model.Player.Registration;
-using Faj.Common.Model.Player.Resource.Interface;
-using Faj.Common.Model.Player.Resource;
-using Faj.Common.Model.Player.Interface;
-using Faj.Common.Model.Player.Level.Interface;
-using Faj.Common.Model.Player.Level;
+using Faj.Server.Model.Player.Resource.Interface;
+using Faj.Server.Model.Player.Resource;
+using Faj.Server.Model.Player.Interface;
+using Faj.Server.Model.Player.Level.Interface;
+using Faj.Server.Model.Player.Level;
+using Faj.Server.Model.Player.Quest.Interface;
+using Faj.Server.Model.Player.Quest;
 
 namespace Faj.Server.Model.Player
 {
@@ -23,6 +25,7 @@ namespace Faj.Server.Model.Player
         PlayerStructure playerStructure;
         readonly IPlayerResources playerResources;
         readonly IPlayerLevels playerLevels;
+        readonly IPlayerQuests playerQuests;
 
         public PlayerModel(string playerId)
         {
@@ -33,12 +36,17 @@ namespace Faj.Server.Model.Player
             playerStructure = new PlayerStructure();
             playerResources = new PlayerResources(this);
             playerLevels = new PlayerLevels(this);
-
+            playerQuests = new PlayerQuests(this);
         }
 
         public IPlayerLevels GetLevels()
         {
             return playerLevels;
+        }
+
+        public IPlayerQuests GetQuests()
+        {
+            return playerQuests;
         }
 
         public IPlayerResources GetResources()

@@ -6,7 +6,7 @@ namespace Uddle.Static.Collection
 {
     abstract class TypicalStaticCollection<TStaticItem> : IStaticGenericCollection<TStaticItem> where TStaticItem : IStaticItem
 	{
-        Dictionary<string, TStaticItem> items = new Dictionary<string, TStaticItem>();
+        protected Dictionary<string, TStaticItem> items = new Dictionary<string, TStaticItem>();
 
         public void AddItem(string id, TStaticItem item)
         {

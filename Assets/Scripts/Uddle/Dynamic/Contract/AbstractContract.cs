@@ -7,9 +7,9 @@ namespace Uddle.Dynamic.Contract
 {
 	abstract class AbstractContract
 	{
-        readonly IStaticContract contract;
-        readonly IPlayerModel playerModel;
-        readonly IModuleFactory moduleFactory;
+        readonly protected IStaticContract contract;
+        readonly protected IPlayerModel playerModel;
+        readonly protected IModuleFactory moduleFactory;
 
         public AbstractContract(IStaticContract contract, IPlayerModel playerModel)
         {
@@ -19,9 +19,16 @@ namespace Uddle.Dynamic.Contract
             moduleFactory = ServiceProvider.Instance.GetService<IModuleFactory>();
         }
 
-        public bool Start()
+        public virtual bool Start()
         {
-            return CheckStart();
+            if (false == CheckStart())
+            {
+                return false;
+            }
+
+            Pay();
+
+            return true;
         }
 
         protected bool CheckStart()
@@ -46,6 +53,10 @@ namespace Uddle.Dynamic.Contract
             }
 
             return true;
+        }
+
+        protected void Pay()
+        {
         }
 	}
 }

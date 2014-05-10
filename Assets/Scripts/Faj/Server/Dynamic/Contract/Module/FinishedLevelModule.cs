@@ -9,11 +9,11 @@ namespace Faj.Server.Dynamic.Contract.Module
 	{
         public bool Check(IPlayerModel playerModel, ICondition condition)
         {
-            var commonPlayerModel = playerModel as Faj.Common.Model.Player.Interface.IPlayerModel;
+            var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
             var finishLevelCondition = condition as IIdCondition;
             var levelId = finishLevelCondition.GetId();
 
-            return commonPlayerModel.GetLevels().IsLevelOpen(levelId);
+            return serverPlayerModel.GetLevels().IsLevelOpen(levelId);
         }
 
         public void Pay(IPlayerModel playerModel, ICondition condition)
@@ -23,11 +23,11 @@ namespace Faj.Server.Dynamic.Contract.Module
 
         public void Award(IPlayerModel playerModel, ICondition condition)
         {
-            var commonPlayerModel = playerModel as Faj.Common.Model.Player.Interface.IPlayerModel;
+            var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
             var finishLevelCondition = condition as IIdCondition;
             var levelId = finishLevelCondition.GetId();
 
-            commonPlayerModel.GetLevels().SetLevelLastTime(levelId, 0);
+            serverPlayerModel.GetLevels().SetLevelLastTime(levelId, 0);
         }
 	}
 }

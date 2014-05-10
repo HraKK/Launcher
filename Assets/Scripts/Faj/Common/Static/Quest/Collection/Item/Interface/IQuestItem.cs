@@ -7,5 +7,6 @@ namespace Faj.Common.Static.Quest.Collection.Item.Interface
         string GetLevel();
         string GetAction();
         string GetTarget();
+        int GetValue();
     }
 }

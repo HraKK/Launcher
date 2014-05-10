@@ -40,6 +40,7 @@ namespace Faj.Common.Static.Parser
             var level = (string)element.Element("level");
             var action = (string)element.Element("action");
             var target = (string)element.Element("target");
+            var value = 0;
             
             if (element.Element("checkstart") != null)
             {
@@ -62,7 +63,8 @@ namespace Faj.Common.Static.Parser
                     if (checkFinishElement.Name == "actions")
                     {
                         var countElement = checkFinishElement.Element("count");
-                        var countCondition = new CountCondition((int)countElement);
+                        value = (int)countElement;
+                        var countCondition = new CountCondition(value);
                         var actionModule = new ActionModule(countCondition);
                         checkFinish.Add(actionModule);
                     }
@@ -102,7 +104,7 @@ namespace Faj.Common.Static.Parser
                 }
             }
 
-            var item = new QuestItem(id, checkStart, checkFinish, null, award, null, level, action, target);
+            var item = new QuestItem(id, checkStart, checkFinish, null, award, null, level, action, target, value);
 
             return item;
         }

@@ -25,7 +25,6 @@ namespace Faj.Client.GUI.Layout.Strategy.SelectLevel
         {
             this.selectLevelLayout = selectLevelLayout;
             packageService = ServiceProvider.Instance.GetService<IPackageService>();
-            
         }
 
         public void DoInitializeStrategy()
@@ -91,14 +90,10 @@ namespace Faj.Client.GUI.Layout.Strategy.SelectLevel
 
         void OnUP()
         {
-            UnityEngine.Debug.Log("ddd");
             var playerService = ServiceProvider.Instance.GetService<IPlayerService>();
             var playerModel = playerService.GetPlayerModel();
-            var resources = playerModel.GetResources().GetResources();
-            var res = new System.Collections.Generic.Dictionary<string, int>();
-            res.Add("money", 5);
+
             playerModel.ChangeLocation(LocationEnum.Upgrade);
-            playerModel.GetResources().AwardResources(res);
         }
     }
 }

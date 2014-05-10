@@ -1,6 +1,7 @@
-﻿using Faj.Common.Model.Player.Resource.Interface;
+﻿using Faj.Client.Model.Player.Resource.Interface;
 using Faj.Common.Model.Player.Structure;
 using System;
+using Faj.Client.Model.Player.Level.Interface;
 
 namespace Faj.Client.Model.Player.Interface
 {
@@ -11,5 +12,8 @@ namespace Faj.Client.Model.Player.Interface
         event Action<LocationEnum> OnChangeLocation;
         void ChangeLocation(LocationEnum location);
         LocationEnum GetLocation();
+
+        IPlayerLevels GetLevels();
+        IPlayerResources GetResources();
 	}
 }

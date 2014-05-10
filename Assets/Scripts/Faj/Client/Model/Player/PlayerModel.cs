@@ -5,10 +5,10 @@ using Faj.Client.Dao.Interface;
 using Faj.Common.Model.Player.Structure;
 using Uddle.Dependency.Interface;
 using System;
-using Faj.Common.Model.Player.Resource;
-using Faj.Common.Model.Player.Resource.Interface;
-using Faj.Common.Model.Player.Level.Interface;
-using Faj.Common.Model.Player.Level;
+using Faj.Client.Model.Player.Resource;
+using Faj.Client.Model.Player.Resource.Interface;
+using Faj.Client.Model.Player.Level.Interface;
+using Faj.Client.Model.Player.Level;
 
 namespace Faj.Client.Model.Player
 {

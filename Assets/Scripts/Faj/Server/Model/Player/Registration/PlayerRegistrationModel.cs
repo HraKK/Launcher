@@ -3,7 +3,7 @@ using Uddle.Service;
 using Uddle.Static.Service.Interface;
 using Faj.Common.Model.Static.PlayerInitialize.Collection.Item.Interface;
 using Faj.Common.Model.Static.PlayerInitialize.Collection.Interface;
-using Faj.Common.Model.Player.Interface;
+using Faj.Server.Model.Player.Interface;
 
 namespace Faj.Server.Model.Player.Registration
 {

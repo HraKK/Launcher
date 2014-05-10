@@ -46,15 +46,11 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
 
         void OnUP()
         {
-            UnityEngine.Debug.Log("dddDDD");
             var playerService = ServiceProvider.Instance.GetService<IPlayerService>();
             var playerModel = playerService.GetPlayerModel();
-            var resources = playerModel.GetResources().GetResources();
-            var res = new System.Collections.Generic.Dictionary<string, int>();
-            res.Add("skull", 4);
+
             playerModel.ChangeLocation(LocationEnum.SelectLevel);
-            playerModel.Save();
-            playerModel.GetResources().AwardResources(res);
+            playerModel.Save();            
         }
 
         public void DoStrategy()

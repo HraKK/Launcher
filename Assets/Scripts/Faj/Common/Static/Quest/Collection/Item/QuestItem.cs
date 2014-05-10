@@ -10,6 +10,7 @@ namespace Faj.Common.Static.Quest.Collection.Item
         protected string level;
         protected string action;
         protected string target;
+        protected int value;
 
         public QuestItem(string id,
             List<IContractModule> checkStart,
@@ -19,12 +20,14 @@ namespace Faj.Common.Static.Quest.Collection.Item
             List<IContractModule> skip,
             string level,
             string action,
-            string target) :
+            string target,
+            int value) :
             base(id, checkStart, checkFinish, pay, award, skip)
         {
             this.level = level;
             this.action = action;
             this.target = target;
+            this.value = value;
         }
 
         public string GetLevel()
@@ -40,6 +43,11 @@ namespace Faj.Common.Static.Quest.Collection.Item
         public string GetTarget()
         {
             return target;
+        }
+
+        public int GetValue()
+        {
+            return value;
         }
     }
 }

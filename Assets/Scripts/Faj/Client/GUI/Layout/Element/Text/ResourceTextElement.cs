@@ -1,7 +1,7 @@
 ﻿using Uddle.GUI.Layout.Element.TextElement;
 using Uddle.Service;
 using Faj.Client.Model.Player.Service.Interface;
-using Faj.Common.Model.Player.Resource.Interface;
+using Faj.Client.Model.Player.Resource.Interface;
 
 namespace Faj.Client.GUI.Layout.Element.Text 
 {
