@@ -39,6 +39,11 @@ namespace Faj.Server.Model.Player
             playerQuests = new PlayerQuests(this);
         }
 
+        public string GetId()
+        {
+            return playerId;
+        }
+
         public IPlayerLevels GetLevels()
         {
             return playerLevels;

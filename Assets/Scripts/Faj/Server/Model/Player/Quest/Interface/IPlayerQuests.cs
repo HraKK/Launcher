@@ -2,5 +2,7 @@
 {
 	interface IPlayerQuests
 	{
+        void Notify(string action, string target, int value);
+        int GetFinishedQuestCountByLevel(string level);
 	}
 }

@@ -3,10 +3,11 @@ using Uddle.Static.Contract.Interface;
 using Faj.Common.Model.Player.Interface;
 using Faj.Common.Model.Player.Structure;
 using Faj.Common.Static.Quest.Collection.Item.Interface;
+using Faj.Server.Dynamic.Contract.Interface;
 
 namespace Faj.Server.Dynamic.Contract
 {
-    class QuestContract : AbstractContract
+    class QuestContract : AbstractContract, IQuestContract
     {
         protected QuestStructure structure;
         protected IQuestItem questItem;
@@ -22,8 +23,8 @@ namespace Faj.Server.Dynamic.Contract
 
             if (false == commonPlayerModel.GetPlayerStructure().quests.TryGetValue(questId, out structure))
             {
-                var questStructure = new QuestStructure(questId);
-                commonPlayerModel.GetPlayerStructure().quests.Add(questId, questStructure);
+                structure = new QuestStructure(questId);
+                commonPlayerModel.GetPlayerStructure().quests.Add(questId, structure);
             }
         }
 
@@ -36,7 +37,7 @@ namespace Faj.Server.Dynamic.Contract
         {
             structure.value += value;
 
-            if (questItem.GetValue() >= structure.value)
+            if (questItem.GetValue() <= structure.value)
             {
                 structure.value = questItem.GetValue();
                 structure.status = Status.FINISHED;

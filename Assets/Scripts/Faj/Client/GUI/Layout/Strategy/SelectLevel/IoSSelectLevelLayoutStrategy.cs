@@ -90,8 +90,16 @@ namespace Faj.Client.GUI.Layout.Strategy.SelectLevel
 
         void OnUP()
         {
+            var routerService = ServiceProvider.Instance.GetService<Faj.Server.Router.Service.Interface.IServerRouterService>();
+            
+
+
             var playerService = ServiceProvider.Instance.GetService<IPlayerService>();
             var playerModel = playerService.GetPlayerModel();
+
+            var idContent = new Faj.Common.Message.Content.IdContent(playerModel.GetId());
+            var message = new Uddle.Message.SimpleMessage("player", "cheat", idContent);
+            routerService.Route(message);
 
             playerModel.ChangeLocation(LocationEnum.Upgrade);
         }

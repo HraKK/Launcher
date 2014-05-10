@@ -36,8 +36,8 @@ namespace Faj.Client.GUI.Layout
             var layoutStrategyFactory = new SelectLevelLayoutStrategyFactory(platform, this);
             layoutStrategy = layoutStrategyFactory.GetConcreteStrategy() as ILayoutStrategy;
 
-            var playerModelService = ServiceProvider.Instance.GetService<Faj.Server.Model.Player.Service.Interface.IServerPlayersService>();
-            var playerModel = playerModelService.GetPlayerInstance("testPlayer2") as Uddle.Model.Player.Interface.IPlayerModel;
+            var playerService = ServiceProvider.Instance.GetService<IPlayerService>();
+            var playerModel = playerService.GetPlayerModel();
 
             var loc = staticContainerService.GetStaticCollection<ILevelOpenCollection>("levels_open_contract");
             var staticContract = loc.GetItem("level_1");

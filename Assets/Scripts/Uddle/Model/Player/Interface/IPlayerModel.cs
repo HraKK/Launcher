@@ -2,6 +2,7 @@
 {
     interface IPlayerModel
     {
+        string GetId();
         void Load();
         void Save();
 	}

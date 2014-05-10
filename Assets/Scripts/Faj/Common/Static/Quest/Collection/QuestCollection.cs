@@ -27,5 +27,21 @@ namespace Faj.Common.Static.Quest.Collection
 
             return quests;
         }
+
+        public List<IQuestItem> GetItemsByLevel(string level)
+        {
+            List<IQuestItem> quests = new List<IQuestItem>();
+            foreach (var item in items.Values)
+            {
+                if (item.GetLevel() != level)
+                {
+                    continue;
+                }
+
+                quests.Add(item);
+            }
+
+            return quests;
+        }
     }
 }

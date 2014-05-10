@@ -46,7 +46,7 @@ namespace Faj.Common.Static.Parser
             {
                 foreach (var checkStartElement in element.Element("checkstart").Elements())
                 {
-                    if (checkStartElement.Name == "finishedQuests")
+                    if (checkStartElement.Name == "finishedquests")
                     {
                         var countElement = checkStartElement.Element("count");
                         var countCondition = new CountCondition((int)countElement);

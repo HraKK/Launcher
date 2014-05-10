@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using Faj.Server.Model.Player.Resource.Interface;
 using Faj.Common.Model.Player.Structure;
-using Faj.Common.Model.Player.Interface;
+using Faj.Server.Model.Player.Interface;
 
 namespace Faj.Server.Model.Player.Resource
 {
@@ -76,6 +76,8 @@ namespace Faj.Server.Model.Player.Resource
                 {
                     userResources[resourceKVP.Key] +=  resourceKVP.Value;
                 }
+
+                playerModel.GetQuests().Notify("COLLECT", resourceKVP.Key, resourceKVP.Value);
             }
 
             SetResources(userResources);

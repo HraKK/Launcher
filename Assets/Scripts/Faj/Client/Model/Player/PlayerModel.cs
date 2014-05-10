@@ -41,6 +41,11 @@ namespace Faj.Client.Model.Player
             return playerLevels;
         }
 
+        public string GetId()
+        {
+            return playerId;
+        }
+
         public IPlayerResources GetResources()
         {
             return playerResources;

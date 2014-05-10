@@ -7,5 +7,6 @@ namespace Faj.Common.Static.Quest.Collection.Interface
 	interface IQuestCollection : IStaticGenericCollection<IQuestItem>
 	{
         List<IQuestItem> GetItemsByActionAndTarget(string action, string target);
+        List<IQuestItem> GetItemsByLevel(string level);
 	}
 }
