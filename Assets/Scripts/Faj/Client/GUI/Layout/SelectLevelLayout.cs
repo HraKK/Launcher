@@ -35,23 +35,6 @@ namespace Faj.Client.GUI.Layout
             levelCollection = staticContainerService.GetStaticCollection<ILevelCollection>("levels");
             var layoutStrategyFactory = new SelectLevelLayoutStrategyFactory(platform, this);
             layoutStrategy = layoutStrategyFactory.GetConcreteStrategy() as ILayoutStrategy;
-
-            var playerService = ServiceProvider.Instance.GetService<IPlayerService>();
-            var playerModel = playerService.GetPlayerModel();
-
-            var loc = staticContainerService.GetStaticCollection<ILevelOpenCollection>("levels_open_contract");
-            var staticContract = loc.GetItem("level_1");
-
-            var contract = new FinishedLevelContract(staticContract, playerModel);
-            UnityEngine.Debug.Log("contract start: " + contract);
-            UnityEngine.Debug.Log("contract start: " + contract.Start());
-
-            //foreach (var i in loc.GetItem("level_2").GetCheckFinish())
-            //{
-            //    UnityEngine.Debug.Log("###");
-            //    var cond = i.GetCondition() as Faj.Common.Static.Contract.Condition.Interface.IIdCondition;
-            //    UnityEngine.Debug.Log("ID: " + cond.GetId());
-            //}
         }
 
         public ILevelCollection GetLevels()

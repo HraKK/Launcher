@@ -7,5 +7,6 @@ namespace Faj.Server.Dynamic.Contract.Interface
 	{
         Status GetStatus();
         void Increment(int value);
+        bool IsLocked();
 	}
 }

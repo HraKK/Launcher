@@ -9,6 +9,10 @@ using Faj.Client.Model.Player.Resource;
 using Faj.Client.Model.Player.Resource.Interface;
 using Faj.Client.Model.Player.Level.Interface;
 using Faj.Client.Model.Player.Level;
+using Faj.Client.Model.Player.Upgrade.Interface;
+using Faj.Client.Model.Player.Upgrade;
+using Faj.Client.Model.Player.Quest.Interface;
+using Faj.Client.Model.Player.Quest;
 
 namespace Faj.Client.Model.Player
 {
@@ -25,7 +29,9 @@ namespace Faj.Client.Model.Player
 
         PlayerStructure playerStructure;
         readonly IPlayerResources playerResources;
+        readonly IPlayerUpgrades playerUpgrades;
         readonly IPlayerLevels playerLevels;
+        readonly IPlayerQuests playerQuests;
 
         public PlayerModel(string playerId)
         {
@@ -34,6 +40,18 @@ namespace Faj.Client.Model.Player
             playerDao = daoFactory.GetPlayerDao();
             playerResources = new PlayerResources(this);
             playerLevels = new PlayerLevels(this);
+            playerUpgrades = new PlayerUpgrades(this);
+            playerQuests = new PlayerQuests(this);
+        }
+
+        public IPlayerUpgrades GetUpgrades()
+        {
+            return playerUpgrades;
+        }
+
+        public IPlayerQuests GetQuests()
+        {
+            return playerQuests;
         }
 
         public IPlayerLevels GetLevels()

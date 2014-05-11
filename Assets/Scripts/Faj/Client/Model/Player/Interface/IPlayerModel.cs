@@ -2,6 +2,8 @@
 using Faj.Common.Model.Player.Structure;
 using System;
 using Faj.Client.Model.Player.Level.Interface;
+using Faj.Client.Model.Player.Upgrade.Interface;
+using Faj.Client.Model.Player.Quest.Interface;
 
 namespace Faj.Client.Model.Player.Interface
 {
@@ -14,6 +16,8 @@ namespace Faj.Client.Model.Player.Interface
         LocationEnum GetLocation();
 
         IPlayerLevels GetLevels();
+        IPlayerUpgrades GetUpgrades();
+        IPlayerQuests GetQuests();
         IPlayerResources GetResources();
 	}
 }

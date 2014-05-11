@@ -7,10 +7,10 @@ namespace Faj.Common.Static.Quest.Collection.Item
 {
 	class QuestItem: AbstractContract, IQuestItem
     {
-        protected string level;
-        protected string action;
-        protected string target;
-        protected int value;
+        protected readonly string level;
+        protected readonly string action;
+        protected readonly string target;
+        protected readonly int value;
 
         public QuestItem(string id,
             List<IContractModule> checkStart,

@@ -11,7 +11,7 @@ namespace Uddle.Dynamic.Contract
 	{
         readonly protected IStaticContract contract;
         readonly protected IPlayerModel playerModel;
-        readonly protected IModuleFactory moduleFactory;
+        readonly protected IModuleFactory moduleFactory;        
 
         public AbstractContract(IStaticContract contract, IPlayerModel playerModel)
         {

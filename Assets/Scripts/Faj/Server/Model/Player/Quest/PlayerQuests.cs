@@ -56,7 +56,12 @@ namespace Faj.Server.Model.Player.Quest
             {
                 var questId = questStatic.GetId();
                 var quest = GetQuestByTemplateId(questId);
-                
+
+                if (quest.IsLocked() == true)
+                {
+                    continue;
+                }
+
                 if (quest.GetStatus() == Status.FINISHED)
                 {
                     continue;

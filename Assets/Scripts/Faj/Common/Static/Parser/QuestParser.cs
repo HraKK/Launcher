@@ -35,6 +35,7 @@ namespace Faj.Common.Static.Parser
             var checkStart = new List<IContractModule>();
             var checkFinish = new List<IContractModule>();
             var award = new List<IContractModule>();
+            var skip = new List<IContractModule>();
 
             var id = (string)element.Element("id");
             var level = (string)element.Element("level");
@@ -64,9 +65,9 @@ namespace Faj.Common.Static.Parser
                     {
                         var countElement = checkFinishElement.Element("count");
                         value = (int)countElement;
-                        var countCondition = new CountCondition(value);
-                        var actionModule = new ActionModule(countCondition);
-                        checkFinish.Add(actionModule);
+                        //var countCondition = new CountCondition(value);
+                        //var actionModule = new ActionModule(countCondition);
+                        //checkFinish.Add(actionModule);
                     }
                 }
             }
@@ -104,7 +105,40 @@ namespace Faj.Common.Static.Parser
                 }
             }
 
-            var item = new QuestItem(id, checkStart, checkFinish, null, award, null, level, action, target, value);
+            if (element.Element("skip") != null)
+            {
+                Dictionary<string, int> resources = new Dictionary<string, int>();
+
+                foreach (var skipElement in element.Element("skip").Elements())
+                {
+                    if (skipElement.Name == "resources")
+                    {
+                        foreach (var resourceElement in skipElement.Elements())
+                        {
+                            var resourceName = resourceElement.Name.ToString();
+                            var resourceCount = (int)resourceElement;
+
+                            if (resources.ContainsKey(resourceName))
+                            {
+                                resources[resourceName] += resourceCount;
+                            }
+                            else
+                            {
+                                resources.Add(resourceName, resourceCount);
+                            }
+                        }
+                    }
+                }
+
+                if (resources.Count != 0)
+                {
+                    var DictionaryIntCondition = new DictionaryIntCondition(resources);
+                    var resourceModule = new ResourceModule(DictionaryIntCondition);
+                    skip.Add(resourceModule);
+                }
+            }
+
+            var item = new QuestItem(id, checkStart, checkFinish, null, award, skip, level, action, target, value);
 
             return item;
         }

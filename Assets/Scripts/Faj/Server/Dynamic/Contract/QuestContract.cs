@@ -11,6 +11,7 @@ namespace Faj.Server.Dynamic.Contract
     {
         protected QuestStructure structure;
         protected IQuestItem questItem;
+        protected bool isLocked = false;
 
         public QuestContract(IStaticContract contract, IPlayerModel playerModel)
             : base(contract, playerModel)
@@ -39,8 +40,9 @@ namespace Faj.Server.Dynamic.Contract
 
             if (questItem.GetValue() <= structure.value)
             {
+                Lock();
                 structure.value = questItem.GetValue();
-                structure.status = Status.FINISHED;
+                Finish();
             }
         }
 
@@ -54,6 +56,36 @@ namespace Faj.Server.Dynamic.Contract
             structure.status = Status.STARTED;
 
             return true;
+        }
+
+        public virtual bool Finish()
+        {
+            if (false == base.Finish())
+            {
+                Unlock();
+                return false;
+            }
+
+            Unlock();
+            structure.status = Status.FINISHED;
+
+            return true;
+        }
+
+
+        protected void Lock()
+        {
+            isLocked = true;
+        }
+
+        protected void Unlock()
+        {
+            isLocked = false;
+        }
+
+        public bool IsLocked()
+        {
+            return isLocked;
         }
     }
 }

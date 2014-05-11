@@ -41,17 +41,12 @@ namespace Faj.Server.Controller
             var playerModel = GetServerPlayersService().GetPlayerInstance(playerId) as Faj.Server.Model.Player.Interface.IPlayerModel;
 
             var resource = new System.Collections.Generic.Dictionary<string, int>();
-            resource.Add("money", 1);
+            resource.Add("money", 5);
             resource.Add("skull", 1);
 
             playerModel.GetResources().AwardResources(resource);
 
-            foreach (var q in playerModel.GetPlayerStructure().quests)
-            {
-                UnityEngine.Debug.Log("quest template: " + q.Key);
-                UnityEngine.Debug.Log("quest value: " + q.Value.value);
-                UnityEngine.Debug.Log("quest status: " + q.Value.status);
-            }
+            playerModel.GetUpgrades().Upgrade("power");
             
         }
 

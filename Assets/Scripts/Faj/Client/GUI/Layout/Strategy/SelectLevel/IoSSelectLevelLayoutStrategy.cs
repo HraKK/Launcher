@@ -80,6 +80,7 @@ namespace Faj.Client.GUI.Layout.Strategy.SelectLevel
                 selectLevelLayout.AddElement(levelText);
             }
 
+            
            
         }
 
@@ -90,12 +91,23 @@ namespace Faj.Client.GUI.Layout.Strategy.SelectLevel
 
         void OnUP()
         {
+
+
+            
+
             var routerService = ServiceProvider.Instance.GetService<Faj.Server.Router.Service.Interface.IServerRouterService>();
             
 
 
             var playerService = ServiceProvider.Instance.GetService<IPlayerService>();
             var playerModel = playerService.GetPlayerModel();
+
+            UnityEngine.Debug.Log("<color=green>UPGRADES</color>");
+
+            foreach (var upg in playerModel.GetUpgrades().GetUpgrades())
+            {
+                UnityEngine.Debug.Log("upgrade: " + upg.Key + " level: " + upg.Value);
+            }
 
             var idContent = new Faj.Common.Message.Content.IdContent(playerModel.GetId());
             var message = new Uddle.Message.SimpleMessage("player", "cheat", idContent);

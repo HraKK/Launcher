@@ -28,6 +28,8 @@ namespace Faj.Client.Model.Game.Strategy.Server
 
             moduleFactory.AddModule("finishedlevel", new FinishedLevelModule());
             moduleFactory.AddModule("finishedquests", new FinishedQuestModule());
+            moduleFactory.AddModule("resource", new ResourceModule());
+            moduleFactory.AddModule("upgrades", new UpgradeModule());
             ServiceProvider.Instance.SetService<IModuleFactory>(moduleFactory);
         }
     }
