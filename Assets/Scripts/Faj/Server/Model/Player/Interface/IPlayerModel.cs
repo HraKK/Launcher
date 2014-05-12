@@ -2,6 +2,7 @@
 using Faj.Server.Model.Player.Quest.Interface;
 using Faj.Server.Model.Player.Resource.Interface;
 using Faj.Server.Model.Player.Upgrade.Interface;
+using Faj.Server.Model.Player.Achievement.Interface;
 
 namespace Faj.Server.Model.Player.Interface
 {
@@ -10,6 +11,7 @@ namespace Faj.Server.Model.Player.Interface
         IPlayerUpgrades GetUpgrades();
         IPlayerLevels GetLevels();
         IPlayerQuests GetQuests();
+        IPlayerAchievements GetAchievements();
         IPlayerResources GetResources();
 	}
 }

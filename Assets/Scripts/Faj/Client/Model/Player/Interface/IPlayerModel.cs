@@ -4,6 +4,7 @@ using System;
 using Faj.Client.Model.Player.Level.Interface;
 using Faj.Client.Model.Player.Upgrade.Interface;
 using Faj.Client.Model.Player.Quest.Interface;
+using Faj.Client.Model.Player.Achievement.Interface;
 
 namespace Faj.Client.Model.Player.Interface
 {
@@ -18,6 +19,7 @@ namespace Faj.Client.Model.Player.Interface
         IPlayerLevels GetLevels();
         IPlayerUpgrades GetUpgrades();
         IPlayerQuests GetQuests();
+        IPlayerAchievements GetAchievements();
         IPlayerResources GetResources();
 	}
 }

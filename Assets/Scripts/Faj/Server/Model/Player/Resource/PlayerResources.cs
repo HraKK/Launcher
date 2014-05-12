@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using Faj.Server.Model.Player.Resource.Interface;
 using Faj.Common.Model.Player.Structure;
 using Faj.Server.Model.Player.Interface;
+using Faj.Server.Model.Player.Quest.Interface;
+using Faj.Server.Model.Player.Achievement.Interface;
 
 namespace Faj.Server.Model.Player.Resource
 {
@@ -76,8 +78,9 @@ namespace Faj.Server.Model.Player.Resource
                 {
                     userResources[resourceKVP.Key] +=  resourceKVP.Value;
                 }
-
+                UnityEngine.Debug.Log("COLLECT " + resourceKVP.Key + resourceKVP.Value);
                 playerModel.GetQuests().Notify("COLLECT", resourceKVP.Key, resourceKVP.Value);
+                playerModel.GetAchievements().Notify("COLLECT", resourceKVP.Key, resourceKVP.Value);
             }
 
             SetResources(userResources);

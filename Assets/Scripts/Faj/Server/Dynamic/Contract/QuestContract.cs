@@ -1,31 +1,37 @@
 ﻿using Uddle.Dynamic.Contract;
 using Uddle.Static.Contract.Interface;
-using Faj.Common.Model.Player.Interface;
 using Faj.Common.Model.Player.Structure;
 using Faj.Common.Static.Quest.Collection.Item.Interface;
 using Faj.Server.Dynamic.Contract.Interface;
+using Uddle.Model.Player.Interface;
 
 namespace Faj.Server.Dynamic.Contract
 {
     class QuestContract : AbstractContract, IQuestContract
     {
         protected QuestStructure structure;
-        protected IQuestItem questItem;
+        protected IValuableItem item;
         protected bool isLocked = false;
 
         public QuestContract(IStaticContract contract, IPlayerModel playerModel)
             : base(contract, playerModel)
         {
-            questItem = contract as IQuestItem;
+            CreateIfNotExists(contract);
+        }
+
+        protected virtual void CreateIfNotExists(IStaticContract contract)
+        {
+
+            item = contract as IValuableItem;
+            UnityEngine.Debug.Log("qi:" + item);
+            var itemId = item.GetId();
 
             var commonPlayerModel = playerModel as Faj.Common.Model.Player.Interface.IPlayerModel;
-            var questId = contract.GetId();
 
-
-            if (false == commonPlayerModel.GetPlayerStructure().quests.TryGetValue(questId, out structure))
+            if (false == commonPlayerModel.GetPlayerStructure().quests.TryGetValue(itemId, out structure))
             {
-                structure = new QuestStructure(questId);
-                commonPlayerModel.GetPlayerStructure().quests.Add(questId, structure);
+                structure = new QuestStructure(itemId);
+                commonPlayerModel.GetPlayerStructure().quests.Add(itemId, structure);
             }
         }
 
@@ -36,12 +42,15 @@ namespace Faj.Server.Dynamic.Contract
 
         public void Increment(int value)
         {
+            UnityEngine.Debug.Log("exists!!!!!!" + item);
+            UnityEngine.Debug.Log("existss!!!!!!" + structure);
             structure.value += value;
 
-            if (questItem.GetValue() <= structure.value)
+            if (item.GetValue() <= structure.value)
             {
+
                 Lock();
-                structure.value = questItem.GetValue();
+                structure.value = item.GetValue();
                 Finish();
             }
         }

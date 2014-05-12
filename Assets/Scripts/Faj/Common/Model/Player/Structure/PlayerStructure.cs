@@ -19,5 +19,7 @@ namespace Faj.Common.Model.Player.Structure
         public Dictionary<string, int> upgrades = new Dictionary<string, int>();
         [ProtoMember(5)]
         public Dictionary<string, QuestStructure> quests = new Dictionary<string, QuestStructure>();
+        [ProtoMember(6)]
+        public Dictionary<string, QuestStructure> achievements = new Dictionary<string, QuestStructure>();
 	}
 }

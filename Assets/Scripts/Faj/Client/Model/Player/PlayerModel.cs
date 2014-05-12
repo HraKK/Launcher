@@ -13,6 +13,8 @@ using Faj.Client.Model.Player.Upgrade.Interface;
 using Faj.Client.Model.Player.Upgrade;
 using Faj.Client.Model.Player.Quest.Interface;
 using Faj.Client.Model.Player.Quest;
+using Faj.Client.Model.Player.Achievement.Interface;
+using Faj.Client.Model.Player.Achievement;
 
 namespace Faj.Client.Model.Player
 {
@@ -32,6 +34,7 @@ namespace Faj.Client.Model.Player
         readonly IPlayerUpgrades playerUpgrades;
         readonly IPlayerLevels playerLevels;
         readonly IPlayerQuests playerQuests;
+        readonly IPlayerAchievements playerAchievements;
 
         public PlayerModel(string playerId)
         {
@@ -42,6 +45,7 @@ namespace Faj.Client.Model.Player
             playerLevels = new PlayerLevels(this);
             playerUpgrades = new PlayerUpgrades(this);
             playerQuests = new PlayerQuests(this);
+            playerAchievements = new PlayerAchievements(this);
         }
 
         public IPlayerUpgrades GetUpgrades()
@@ -52,6 +56,11 @@ namespace Faj.Client.Model.Player
         public IPlayerQuests GetQuests()
         {
             return playerQuests;
+        }
+
+        public IPlayerAchievements GetAchievements()
+        {
+            return playerAchievements;
         }
 
         public IPlayerLevels GetLevels()

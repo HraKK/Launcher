@@ -23,7 +23,7 @@ namespace Faj.Client
             var coroutineService = ServiceProvider.Instance.GetService<ICoroutineService>();
             coroutineService.OnCouroutine += new CoroutineProxy(OnCoroutine);
             gameModel.OnInitializeCompleteEvent += new System.Action(OnInitializeComplete);
-            gameModel.Initialize("testPlayer10");
+            gameModel.Initialize("testPlayer11");
             
             GUIObserverService = ServiceProvider.Instance.GetService<IGUIObserverService>();
         }

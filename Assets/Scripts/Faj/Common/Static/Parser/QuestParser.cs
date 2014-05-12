@@ -11,11 +11,11 @@ using Faj.Common.Static.Quest.Collection.Item;
 
 namespace Faj.Common.Static.Parser
 {
-	class QuestParser: IStaticParser
+	class QuestParser : IStaticParser
     {
         public IStaticCollection Parse(XDocument document)
         {
-            var questCollection = new QuestCollection();
+            var collection = new QuestCollection();
             foreach (var element in document.Root.Elements())
             {
                 var item = ParseItem(element);
@@ -24,10 +24,10 @@ namespace Faj.Common.Static.Parser
                     continue;
                 }
 
-                questCollection.AddItem(item.GetId(), item);
+                collection.AddItem(item.GetId(), item);
             }
 
-            return questCollection;
+            return collection;
         }
 
         IQuestItem ParseItem(XElement element)

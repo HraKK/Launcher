@@ -41,12 +41,19 @@ namespace Faj.Server.Controller
             var playerModel = GetServerPlayersService().GetPlayerInstance(playerId) as Faj.Server.Model.Player.Interface.IPlayerModel;
 
             var resource = new System.Collections.Generic.Dictionary<string, int>();
-            resource.Add("money", 5);
+            resource.Add("money", 1);
             resource.Add("skull", 1);
 
             playerModel.GetResources().AwardResources(resource);
 
-            playerModel.GetUpgrades().Upgrade("power");
+            UnityEngine.Debug.Log("Achievements");
+            foreach (var kvp in playerModel.GetPlayerStructure().achievements)
+            {
+                UnityEngine.Debug.Log("Achiev name: " + kvp.Key);
+                UnityEngine.Debug.Log("Achiev value: " + kvp.Value.value);
+                UnityEngine.Debug.Log("Achiev status: " + kvp.Value.status);
+            }
+            //playerModel.GetUpgrades().Upgrade("power");
             
         }
 

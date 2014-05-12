@@ -2,11 +2,10 @@
 
 namespace Faj.Common.Static.Quest.Collection.Item.Interface
 {
-	interface IQuestItem : IStaticContract
+    interface IQuestItem : IValuableItem
     {
         string GetLevel();
         string GetAction();
-        string GetTarget();
-        int GetValue();
+        string GetTarget();        
     }
 }

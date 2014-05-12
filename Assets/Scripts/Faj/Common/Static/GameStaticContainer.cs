@@ -14,6 +14,7 @@ namespace Faj.Common.Model.Static
             AddCollection("upgrades", new UpgradeParser());
             AddCollection("upgrades_buy_contract", new UpgradeBuyParser());
             AddCollection("quests", new QuestParser());
+            AddCollection("achievements", new AchievementParser());
         }        
 	}
 }
