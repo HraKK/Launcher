@@ -68,9 +68,6 @@ namespace Faj.Common.Static.Parser
                             var resourceName = resourceElement.Name.ToString();
                             var resourceCount = (int)resourceElement;
 
-                            UnityEngine.Debug.Log("@res name: " + resourceName);
-                            UnityEngine.Debug.Log("@res value: " + resourceCount);
-
                             if (resources.ContainsKey(resourceName))
                             {
                                 resources[resourceName] += resourceCount;
@@ -81,12 +78,6 @@ namespace Faj.Common.Static.Parser
                             }
                         }
                     }
-                }
-
-                foreach (var kvp in resources)
-                {
-                    UnityEngine.Debug.Log("res name: " + kvp.Key);
-                    UnityEngine.Debug.Log("res value: " + kvp.Value);
                 }
 
                 if (resources.Count != 0)

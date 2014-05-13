@@ -4,7 +4,7 @@ using Faj.Common.Static.Upgrade.Collection.Interface;
 
 namespace Faj.Common.Static.Upgrade.Collection
 {
-	class UpgradeCollection: TypicalStaticCollection<IUpgradeItem>, IUpgradeCollection
+	class UpgradeCollection : TypicalStaticCollection<IUpgradeItem>, IUpgradeCollection
     {
     }
 }

@@ -17,12 +17,11 @@ namespace Faj.Server.Dynamic.Contract
         protected override void CreateIfNotExists(IStaticContract contract)
         {
             item = contract as IValuableItem;
-            UnityEngine.Debug.Log("ai:" + item);
             var itemId = item.GetId();
 
             var commonPlayerModel = playerModel as Faj.Common.Model.Player.Interface.IPlayerModel;
 
-            if (false == commonPlayerModel.GetPlayerStructure().quests.TryGetValue(itemId, out structure))
+            if (false == commonPlayerModel.GetPlayerStructure().achievements.TryGetValue(itemId, out structure))
             {
                 structure = new QuestStructure(itemId);
                 commonPlayerModel.GetPlayerStructure().achievements.Add(itemId, structure);

@@ -4,7 +4,7 @@ using Uddle.Static.Contract.Module;
 
 namespace Faj.Common.Static.Contract.Module
 {
-	class FinishedQuestModule: AbstractContractModule
+	class FinishedQuestModule : AbstractContractModule
 	{
         protected const string moduleName = "finishedquest";
 

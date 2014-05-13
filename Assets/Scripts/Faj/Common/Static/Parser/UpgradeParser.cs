@@ -10,13 +10,11 @@ namespace Faj.Common.Static.Parser
     {
         public IStaticCollection Parse(XDocument document)
         {
-            int i = 0;
             var collection = new UpgradeCollection();
             foreach (var element in document.Root.Elements())
             {
-                i++;
                 var item = ParseItem(element);
-                collection.AddItem(i.ToString(), item);
+                collection.AddItem(item.GetId(), item);
             }
 
             return collection;
