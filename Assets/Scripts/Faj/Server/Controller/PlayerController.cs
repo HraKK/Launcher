@@ -43,15 +43,34 @@ namespace Faj.Server.Controller
             var resource = new System.Collections.Generic.Dictionary<string, int>();
             resource.Add("money", 1);
             resource.Add("skull", 1);
+            resource.Add("crystall", 1);
 
             playerModel.GetResources().AwardResources(resource);
 
-            UnityEngine.Debug.Log("Achievements");
-            foreach (var kvp in playerModel.GetPlayerStructure().achievements)
+            UnityEngine.Debug.Log("Perks");
+            foreach (var kvp in playerModel.GetPlayerStructure().perks)
             {
-                UnityEngine.Debug.Log("Achiev name: " + kvp.Key);
-                UnityEngine.Debug.Log("Achiev value: " + kvp.Value.value);
-                UnityEngine.Debug.Log("Achiev status: " + kvp.Value.status);
+                UnityEngine.Debug.Log("perk name: " + kvp);
+            }
+
+            //var staticContainerService = ServiceProvider.Instance.GetService<Uddle.Static.Service.Interface.IStaticContainerService>();
+            //var coll = staticContainerService.GetStaticCollection<Faj.Common.Static.Perk.Buy.Collection.Interface.IPerkBuyCollection>("perks_buy_contract");
+
+            //foreach (var kvp in coll.GetItems())
+            //{
+            //    UnityEngine.Debug.Log("a: " + kvp.Key);
+            //    UnityEngine.Debug.Log("b: " + kvp.Value);
+            //}
+
+            //var staticPerk = coll.GetItem("megahit");
+
+            //var contract = new Faj.Server.Dynamic.Contract.PerkBuyContract(staticPerk, playerModel);
+            //contract.Start();
+
+            UnityEngine.Debug.Log("Perks");
+            foreach (var kvp in playerModel.GetPlayerStructure().perks)
+            {
+                UnityEngine.Debug.Log("perk name: " + kvp);
             }
             //playerModel.GetUpgrades().Upgrade("power");
             

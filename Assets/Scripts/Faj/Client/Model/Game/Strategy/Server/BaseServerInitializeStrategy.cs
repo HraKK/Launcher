@@ -30,6 +30,7 @@ namespace Faj.Client.Model.Game.Strategy.Server
             moduleFactory.AddModule("finishedquests", new FinishedQuestModule());
             moduleFactory.AddModule("resource", new ResourceModule());
             moduleFactory.AddModule("upgrades", new UpgradeModule());
+            moduleFactory.AddModule("perks", new PerksModule());
             ServiceProvider.Instance.SetService<IModuleFactory>(moduleFactory);
         }
     }

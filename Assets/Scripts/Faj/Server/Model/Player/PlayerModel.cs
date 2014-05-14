@@ -16,6 +16,8 @@ using Faj.Server.Model.Player.Upgrade.Interface;
 using Faj.Server.Model.Player.Upgrade;
 using Faj.Server.Model.Player.Achievement.Interface;
 using Faj.Server.Model.Player.Achievement;
+using Faj.Server.Model.Player.Perk.Interface;
+using Faj.Server.Model.Player.Perk;
 
 namespace Faj.Server.Model.Player
 {
@@ -30,6 +32,7 @@ namespace Faj.Server.Model.Player
         readonly IPlayerResources playerResources;
         readonly IPlayerLevels playerLevels;
         readonly IPlayerUpgrades playerUpgrades;
+        readonly IPlayerPerks playerPerks;
         readonly IPlayerQuests playerQuests;
         readonly IPlayerAchievements playerAchievements;
 
@@ -43,6 +46,7 @@ namespace Faj.Server.Model.Player
             playerResources = new PlayerResources(this);
             playerLevels = new PlayerLevels(this);
             playerUpgrades = new PlayerUpgrades(this);
+            playerPerks = new PlayerPerks(this);
             playerQuests = new PlayerQuests(this);
             playerAchievements = new PlayerAchievements(this);
         }
@@ -50,6 +54,11 @@ namespace Faj.Server.Model.Player
         public string GetId()
         {
             return playerId;
+        }
+
+        public IPlayerPerks GetPerks()
+        {
+            return playerPerks;
         }
 
         public IPlayerUpgrades GetUpgrades()

@@ -4,7 +4,7 @@ using Faj.Server.Model.Player.Interface;
 
 namespace Faj.Server.Dynamic.Contract
 {
-	class UpgradeBuyContract: AbstractInstantContract
+	class UpgradeBuyContract : AbstractInstantContract
 	{
         public UpgradeBuyContract(IStaticContract contract, IPlayerModel playerModel)
             : base(contract, playerModel)

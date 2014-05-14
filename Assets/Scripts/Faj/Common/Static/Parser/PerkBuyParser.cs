@@ -23,7 +23,7 @@ namespace Faj.Common.Static.Parser
                 {
                     continue;
                 }
-
+                
                 collection.AddItem(item.GetId(), item);
             }
 
@@ -37,7 +37,7 @@ namespace Faj.Common.Static.Parser
             var award = new List<IContractModule>();
 
             var id = (string)element.Element("id");
-
+            
             if (element.Element("checkstart") != null)
             {
                 Dictionary<string, int> resources = new Dictionary<string, int>();
