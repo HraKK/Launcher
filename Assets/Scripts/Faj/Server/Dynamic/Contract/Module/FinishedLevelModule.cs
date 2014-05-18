@@ -13,7 +13,7 @@ namespace Faj.Server.Dynamic.Contract.Module
             var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
             var finishLevelCondition = condition as IIdCondition;
             var levelId = finishLevelCondition.GetId();
-
+            
             return serverPlayerModel.GetLevels().IsLevelOpen(levelId);
         }
 
@@ -27,7 +27,7 @@ namespace Faj.Server.Dynamic.Contract.Module
             var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
             var finishLevelCondition = condition as IIdCondition;
             var levelId = finishLevelCondition.GetId();
-
+            UnityEngine.Debug.Log("Set time ti play for level: " + levelId);
             serverPlayerModel.GetLevels().SetLevelLastTime(levelId, 0);
         }
 	}

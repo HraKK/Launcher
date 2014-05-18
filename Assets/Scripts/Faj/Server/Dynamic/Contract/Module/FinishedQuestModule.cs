@@ -11,13 +11,16 @@ namespace Faj.Server.Dynamic.Contract.Module
 	{
         public bool Check(IStaticContract contract, IPlayerModel playerModel, ICondition condition)
         {
+            UnityEngine.Debug.Log("<color=red>CONTRACT</color>");
             var questContract = contract as IQuestItem;
             var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
-            var finishQuestCondition = condition as ICountCondition;
-            var questCount = finishQuestCondition.GetCount();
-            var finishedQuests = serverPlayerModel.GetQuests().GetFinishedQuestCountByLevel(questContract.GetLevel());
+            var finishQuestCondition = condition as IIdCondition;
+            var questId = finishQuestCondition.GetId();
+            UnityEngine.Debug.Log("<color=red>"+questId+"</color>");
+            var isFinishedQuest = serverPlayerModel.GetQuests().IsFinishedQuest(questId);
+            UnityEngine.Debug.Log("<color=red>" + isFinishedQuest + "</color>");
 
-            return finishedQuests >= questCount;
+            return isFinishedQuest;
         }
 
         public void Pay(IStaticContract contract, IPlayerModel playerModel, ICondition condition)

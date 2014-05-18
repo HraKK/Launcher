@@ -53,6 +53,21 @@ namespace Faj.Server.Controller
                 UnityEngine.Debug.Log("perk name: " + kvp);
             }
 
+            var staticContainerService = ServiceProvider.Instance.GetService<Uddle.Static.Service.Interface.IStaticContainerService>();
+            var coll = staticContainerService.GetStaticCollection<Faj.Common.Static.Level.Open.Collection.Interface.ILevelOpenCollection>("levels_open_contract");
+
+            var staticPerk = coll.GetItem("level_2");
+
+            var contract = new Faj.Server.Dynamic.Contract.LevelOpenContract(staticPerk, playerModel);
+            UnityEngine.Debug.Log("Q result:" + contract.Start());
+            UnityEngine.Debug.Log("Q error:" + contract.GetError());
+
+            //foreach (var kvp in coll.GetItems())
+            //{
+            //    UnityEngine.Debug.Log("a: " + kvp.Key);
+            //    UnityEngine.Debug.Log("b: " + kvp.Value);
+            //}
+
             //var staticContainerService = ServiceProvider.Instance.GetService<Uddle.Static.Service.Interface.IStaticContainerService>();
             //var coll = staticContainerService.GetStaticCollection<Faj.Common.Static.Perk.Buy.Collection.Interface.IPerkBuyCollection>("perks_buy_contract");
 

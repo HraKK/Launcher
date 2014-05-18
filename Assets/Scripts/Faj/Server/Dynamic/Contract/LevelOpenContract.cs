@@ -4,9 +4,9 @@ using Uddle.Model.Player.Interface;
 
 namespace Faj.Server.Dynamic.Contract
 {
-	class FinishedLevelContract : AbstractContract
+    class LevelOpenContract : AbstractInstantContract
 	{
-        public FinishedLevelContract(IStaticContract contract, IPlayerModel playerModel)
+        public LevelOpenContract(IStaticContract contract, IPlayerModel playerModel)
             : base(contract, playerModel)
         {
         }

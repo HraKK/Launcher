@@ -90,6 +90,7 @@ namespace Uddle.GUI.Layout
                 elements[i].SetHidden(true);
             }
         }
+
         void RemoveElements()
         {
             for (var i = 0; i < elements.Count; i++)

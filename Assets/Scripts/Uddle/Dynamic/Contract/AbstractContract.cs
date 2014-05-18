@@ -11,7 +11,10 @@ namespace Uddle.Dynamic.Contract
 	{
         readonly protected IStaticContract contract;
         readonly protected IPlayerModel playerModel;
-        readonly protected IModuleFactory moduleFactory;        
+        readonly protected IModuleFactory moduleFactory;
+
+
+        protected string errorMessage;
 
         public AbstractContract(IStaticContract contract, IPlayerModel playerModel)
         {
@@ -19,6 +22,11 @@ namespace Uddle.Dynamic.Contract
             this.playerModel = playerModel;
 
             moduleFactory = ServiceProvider.Instance.GetService<IModuleFactory>();
+        }
+
+        public string GetError()
+        {
+            return errorMessage;
         }
 
         public virtual bool Start()
@@ -92,6 +100,7 @@ namespace Uddle.Dynamic.Contract
 
                 if (false == checkResult)
                 {
+                    errorMessage = "Checking fail in module: " + staticModule.GetName() + " with condition: " + staticModule.GetCondition();
                     return false;
                 }
             }

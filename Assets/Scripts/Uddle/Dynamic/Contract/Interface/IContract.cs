@@ -5,5 +5,7 @@
         bool Start();
         bool Finish();
         bool Skip();
+
+        string GetError();
 	}
 }

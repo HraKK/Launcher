@@ -26,6 +26,18 @@ namespace Faj.Server.Model.Player.Quest
             questsStaticCollection = staticContainerService.GetStaticCollection<IQuestCollection>("quests");
         }
 
+        public bool IsFinishedQuest(string questId)
+        {
+            IQuestContract quest;
+
+            if (false == quests.TryGetValue(questId, out quest))
+            {
+                return false;
+            }
+
+            return quest.GetStatus() == Status.FINISHED;
+        }
+
         public int GetFinishedQuestCountByLevel(string level)
         {
             var questsStatic = questsStaticCollection.GetItemsByLevel(level);
