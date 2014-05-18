@@ -17,21 +17,19 @@ namespace Faj.Common.Model.Static.Parser
         public IStaticCollection Parse(XDocument document)
         {
             
-            int i = 0;
-            var levelOpenCollection = new LevelOpenCollection();
+            var collection = new LevelOpenCollection();
             foreach (var element in document.Root.Elements())
             {
-                i++;
                 var item = ParseItem(element);
                 if (item == null)
                 {
                     continue;
                 }
 
-                levelOpenCollection.AddItem(item.GetId(), item);
+                collection.AddItem(item.GetId(), item);
             }
 
-            return levelOpenCollection;
+            return collection;
         }
 
         ILevelOpenItem ParseItem(XElement element)

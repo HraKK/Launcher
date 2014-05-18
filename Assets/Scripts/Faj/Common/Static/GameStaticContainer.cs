@@ -8,8 +8,10 @@ namespace Faj.Common.Model.Static
 	{
         protected override void InitializeCollections()
         {
+            AddCollection("configuration", new ConfigurationParser());
             AddCollection("player_initialize", new PlayerInitializeParser());
             AddCollection("levels", new LevelParser());
+            AddCollection("levels_play_contract", new LevelPlayParser());
             AddCollection("levels_open_contract", new LevelOpenParser());
             AddCollection("upgrades", new UpgradeParser());
             AddCollection("upgrades_buy_contract", new UpgradeBuyParser());

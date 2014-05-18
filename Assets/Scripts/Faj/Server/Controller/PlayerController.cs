@@ -43,7 +43,7 @@ namespace Faj.Server.Controller
             var resource = new System.Collections.Generic.Dictionary<string, int>();
             resource.Add("money", 1);
             resource.Add("skull", 1);
-            resource.Add("crystall", 1);
+            resource.Add("energy", 4);
 
             playerModel.GetResources().AwardResources(resource);
 
@@ -54,9 +54,9 @@ namespace Faj.Server.Controller
             }
 
             var staticContainerService = ServiceProvider.Instance.GetService<Uddle.Static.Service.Interface.IStaticContainerService>();
-            var coll = staticContainerService.GetStaticCollection<Faj.Common.Static.Level.Open.Collection.Interface.ILevelOpenCollection>("levels_open_contract");
+            var coll = staticContainerService.GetStaticCollection<Faj.Common.Static.Level.Play.Collection.Interface.ILevelPlayCollection>("levels_play_contract");
 
-            var staticPerk = coll.GetItem("level_2");
+            var staticPerk = coll.GetItem("level_4");
 
             var contract = new Faj.Server.Dynamic.Contract.LevelOpenContract(staticPerk, playerModel);
             UnityEngine.Debug.Log("Q result:" + contract.Start());
