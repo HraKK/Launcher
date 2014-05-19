@@ -11,6 +11,7 @@ namespace Faj.Common.Model.Static
             AddCollection("configuration", new ConfigurationParser());
             AddCollection("player_initialize", new PlayerInitializeParser());
             AddCollection("levels", new LevelParser());
+            AddCollection("levels_monsters", new LevelMonsterParser());
             AddCollection("levels_play_contract", new LevelPlayParser());
             AddCollection("levels_open_contract", new LevelOpenParser());
             AddCollection("upgrades", new UpgradeParser());
@@ -19,6 +20,7 @@ namespace Faj.Common.Model.Static
             AddCollection("perks", new PerkParser());
             AddCollection("quests", new QuestParser());
             AddCollection("achievements", new AchievementParser());
+            AddCollection("monsters", new MonsterParser());
         }        
 	}
 }
