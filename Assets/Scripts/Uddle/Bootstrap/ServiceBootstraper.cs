@@ -36,6 +36,8 @@ namespace Uddle.Bootstrap
         {
             var serviceProvider = ServiceProvider.Instance;
 
+            serviceProvider.SetService<IApplicationConfig>(applicationConfig);
+
             var GUIObserverCollection = new ObserverCollection();
             var GUIObserverService = new GUIObserverService(GUIObserverCollection);
             serviceProvider.SetService<IGUIObserverService>(GUIObserverService);

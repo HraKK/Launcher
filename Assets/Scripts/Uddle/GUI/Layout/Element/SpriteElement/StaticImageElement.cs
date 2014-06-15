@@ -7,18 +7,13 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
 {
 	class StaticImageElement : AbstractGUIElement
 	{
-        Texture2D texture;
-
-        public StaticImageElement(Texture2D texture) : base()
+        public StaticImageElement(Sprite sprite, int order = 0)
+            : base(order)
         {
-            this.texture = texture;
-            Sprite sprite = new Sprite();
-            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0,0));
-            spriteRenderer.sprite = sprite;
+            spriteRenderer.sprite = sprite;            
         }
 
-        public StaticImageElement(Sprite sprite)
-            : base()
+        public void ChangeSprite(Sprite sprite)
         {
             spriteRenderer.sprite = sprite;
         }

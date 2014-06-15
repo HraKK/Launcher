@@ -7,5 +7,6 @@ namespace Faj.Server.Model.Player.Perk.Interface
         void AddPerk(string perk);
         List<string> GetPerks();
         bool IsPerk(string perk);
+        bool Buy(string perk);
 	}
 }

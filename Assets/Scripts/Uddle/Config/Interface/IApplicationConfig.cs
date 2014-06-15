@@ -1,4 +1,5 @@
-﻿namespace Uddle.Config.Interface
+﻿using Uddle.Service.Interface;
+namespace Uddle.Config.Interface
 {
     enum ApplicationPlatform
     {
@@ -6,10 +7,12 @@
         IOS
     }
 
-	interface IApplicationConfig
+	interface IApplicationConfig : IService
 	{
         ApplicationPlatform GetPlatform();
         string GetPackagesXmlPath();
         int GetRendererCount();
+        int GetScreenWidth();
+        int GetScreenHeight();
 	}
 }

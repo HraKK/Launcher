@@ -5,6 +5,7 @@ using Faj.Client.Model.Player.Level.Interface;
 using Faj.Client.Model.Player.Upgrade.Interface;
 using Faj.Client.Model.Player.Quest.Interface;
 using Faj.Client.Model.Player.Achievement.Interface;
+using Faj.Client.Model.Player.Perk.Interface;
 
 namespace Faj.Client.Model.Player.Interface
 {
@@ -13,6 +14,7 @@ namespace Faj.Client.Model.Player.Interface
         void SetStructure(PlayerStructure playerStructure);
 
         event Action<LocationEnum> OnChangeLocation;
+        event Action OnUpdateEvent;
         void ChangeLocation(LocationEnum location);
         LocationEnum GetLocation();
 
@@ -21,5 +23,6 @@ namespace Faj.Client.Model.Player.Interface
         IPlayerQuests GetQuests();
         IPlayerAchievements GetAchievements();
         IPlayerResources GetResources();
+        IPlayerPerks GetPerks();
 	}
 }

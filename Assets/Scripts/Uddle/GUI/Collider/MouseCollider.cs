@@ -10,11 +10,6 @@ namespace Uddle.GUI.Collider
         public event Action OnMouseEnterEvent;
         public event Action OnMouseExitEvent;
 
-        void Start()
-        {
-            //UnityEngine.Debug.Log("#2");
-        }
-
         void OnMouseDown()
         {
             UnityEngine.Debug.Log("#3");

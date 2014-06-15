@@ -32,6 +32,6 @@ namespace Faj.Common.Static.Upgrade.Buy.Collection.Item
         public int GetLevel()
         {
             return level;
-        }
+        }        
     }
 }

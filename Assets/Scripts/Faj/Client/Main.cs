@@ -17,13 +17,15 @@ namespace Faj.Client
         IGameModel gameModel;
 
         void Awake()
-        {            
+        {
+            Screen.SetResolution(960, 640, false);
+            useGUILayout = false;
             var bootstraper = new FajBootstraper(new ApplicationConfig());
             gameModel = new GameModel(bootstraper);
             var coroutineService = ServiceProvider.Instance.GetService<ICoroutineService>();
             coroutineService.OnCouroutine += new CoroutineProxy(OnCoroutine);
             gameModel.OnInitializeCompleteEvent += new System.Action(OnInitializeComplete);
-            gameModel.Initialize("testPlayer13");
+            gameModel.Initialize("testPlayer15");
             
             GUIObserverService = ServiceProvider.Instance.GetService<IGUIObserverService>();
         }

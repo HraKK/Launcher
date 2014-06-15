@@ -15,8 +15,16 @@ namespace Faj.Server.Dynamic.Contract.Module
             var questContract = contract as IQuestItem;
             var serverPlayerModel = playerModel as Faj.Server.Model.Player.Interface.IPlayerModel;
             var finishQuestCondition = condition as IIdCondition;
+            if (null == finishQuestCondition)
+            {
+                return true;
+            }
             var questId = finishQuestCondition.GetId();
             UnityEngine.Debug.Log("<color=red>"+questId+"</color>");
+            if (serverPlayerModel.GetQuests() == null)
+            {
+                return false;
+            }
             var isFinishedQuest = serverPlayerModel.GetQuests().IsFinishedQuest(questId);
             UnityEngine.Debug.Log("<color=red>" + isFinishedQuest + "</color>");
 

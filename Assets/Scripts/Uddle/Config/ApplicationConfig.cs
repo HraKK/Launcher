@@ -6,6 +6,8 @@ namespace Uddle.Config
 	class ApplicationConfig : IApplicationConfig
 	{
         ApplicationPlatform platform;
+        int screenWidth;
+        int screenHeight;
 
         public ApplicationConfig()
         {
@@ -26,11 +28,23 @@ namespace Uddle.Config
                 platform = ApplicationPlatform.WEB;
             #endif
                 platform = ApplicationPlatform.IOS;
+                screenWidth = 1136;
+                screenHeight = 640;
         }
 
         public string GetPackagesXmlPath()
         {
             return "file:///C://packages.xml";
+        }
+
+        public int GetScreenWidth()
+        {
+            return screenWidth;
+        }
+
+        public int GetScreenHeight()
+        {
+            return screenHeight;
         }
 
         public int GetRendererCount()

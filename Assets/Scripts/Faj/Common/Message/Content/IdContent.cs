@@ -4,7 +4,7 @@ namespace Faj.Common.Message.Content
 {
     class IdContent : IIdContent
     {
-        readonly string id;
+        readonly protected string id;
 
         public IdContent(string id)
         {

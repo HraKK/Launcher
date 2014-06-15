@@ -4,6 +4,7 @@ using UnityEngine;
 using Uddle.Service;
 using Uddle.GUI.Render.Pool.Service.Interface;
 using Uddle.GUI.Render.Pool.Item.Interface;
+using Uddle.Config.Interface;
 
 namespace Uddle.GUI.Layout.Element
 {
@@ -23,29 +24,36 @@ namespace Uddle.GUI.Layout.Element
         protected float x;
         protected float y;
 
-        public AbstractGUIElement()
+        protected int screenWidth;
+        protected int screenHeight;
+
+        public AbstractGUIElement(int order = 0)
         {
             spritePoolService = ServiceProvider.Instance.GetService<ISpritePoolService>();
+            var applicationConfig = ServiceProvider.Instance.GetService<IApplicationConfig>();
+
+            screenWidth = applicationConfig.GetScreenWidth();
+            screenHeight = applicationConfig.GetScreenHeight();
+
             spriteItem = spritePoolService.Spawn();
             spriteRenderer = spriteItem.GetSpriteRenderer();
             spriteRenderer.enabled = false;
-
+            spriteRenderer.sortingOrder = order;
         }
 
-        public void SetPosition(float x, float y)
+        public virtual void SetPosition(float x, float y)
         {
             this.x = x;
             this.y = y;
 
             var position = spriteRenderer.transform.position;
-
-            position.x = x * 0.01f - Screen.width * 0.005f;
-            position.y = y * 0.01f - Screen.height * 0.005f;
+            position.x = x - screenWidth / 2;
+            position.y = y - screenHeight / 2;
 
             spriteRenderer.transform.position = position;
         }
 
-        public void SetEnabled(bool isEnabled)
+        public virtual void SetEnabled(bool isEnabled)
         {
             this.isEnabled = isEnabled;
             Render();
@@ -56,7 +64,7 @@ namespace Uddle.GUI.Layout.Element
             return isEnabled;
         }
 
-        public void SetHidden(bool isHidden)
+        public virtual void SetHidden(bool isHidden)
         {
             this.isHidden = isHidden;
             Render();

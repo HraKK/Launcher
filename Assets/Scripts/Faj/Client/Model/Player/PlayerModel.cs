@@ -15,6 +15,8 @@ using Faj.Client.Model.Player.Quest.Interface;
 using Faj.Client.Model.Player.Quest;
 using Faj.Client.Model.Player.Achievement.Interface;
 using Faj.Client.Model.Player.Achievement;
+using Faj.Client.Model.Player.Perk;
+using Faj.Client.Model.Player.Perk.Interface;
 
 namespace Faj.Client.Model.Player
 {
@@ -24,6 +26,7 @@ namespace Faj.Client.Model.Player
 	{
         public event Action<IDependency> OnReleaseEvent;
         public event Action<LocationEnum> OnChangeLocation;
+        public event Action OnUpdateEvent;
 
         LocationEnum location;
         readonly IPlayerDao playerDao;
@@ -35,6 +38,7 @@ namespace Faj.Client.Model.Player
         readonly IPlayerLevels playerLevels;
         readonly IPlayerQuests playerQuests;
         readonly IPlayerAchievements playerAchievements;
+        readonly IPlayerPerks playerPerks;
 
         public PlayerModel(string playerId)
         {
@@ -46,6 +50,12 @@ namespace Faj.Client.Model.Player
             playerUpgrades = new PlayerUpgrades(this);
             playerQuests = new PlayerQuests(this);
             playerAchievements = new PlayerAchievements(this);
+            playerPerks = new PlayerPerks(this);
+        }
+
+        public IPlayerPerks GetPerks()
+        {
+            return playerPerks;
         }
 
         public IPlayerUpgrades GetUpgrades()
@@ -120,6 +130,11 @@ namespace Faj.Client.Model.Player
             if (OnReleaseEvent != null)
             {
                 OnReleaseEvent(this);
+            }
+            
+            if (OnUpdateEvent != null)
+            {
+                OnUpdateEvent();
             }
         }
 	}

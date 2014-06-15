@@ -25,12 +25,38 @@ namespace Faj.Server.Controller
 
         protected override void InitializeActions()
         {
-            ActionDelegate save = Save;
             actions.Add("save", Save);
 
-            ActionDelegate cheat = Cheat;
             actions.Add("cheat", Cheat);
 
+            actions.Add("upgrade", Upgrade);
+
+            actions.Add("perk", Perk);
+
+        }
+
+        void Upgrade(IContent content)
+        {
+            var stringContent = content as IStringContent;
+            var playerId = stringContent.GetId();
+            var upgrade = stringContent.GetContent();
+
+            var playerModel = GetServerPlayersService().GetPlayerInstance(playerId) as Faj.Server.Model.Player.Interface.IPlayerModel;
+            playerModel.GetUpgrades().Upgrade(upgrade);
+
+            Save(content);
+        }
+
+        void Perk(IContent content)
+        {
+            var stringContent = content as IStringContent;
+            var playerId = stringContent.GetId();
+            var upgrade = stringContent.GetContent();
+
+            var playerModel = GetServerPlayersService().GetPlayerInstance(playerId) as Faj.Server.Model.Player.Interface.IPlayerModel;
+            playerModel.GetPerks().Buy(upgrade);
+
+            Save(content);
         }
 
         void Cheat(IContent content)
@@ -98,6 +124,12 @@ namespace Faj.Server.Controller
 
             var playerModel = GetServerPlayersService().GetPlayerInstance(playerId);
             playerModel.Save();
+
+            var playerStructure = playerModel.GetPlayerStructure();
+
+            var playerContent = new PlayerContent(playerStructure);
+            var message = new SimpleMessage("player", "load", playerContent);
+            routerService.Route(message);
         }
 
         public IServerPlayersService GetServerPlayersService()

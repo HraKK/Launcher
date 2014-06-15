@@ -14,25 +14,7 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
         readonly PolygonCollider2D collider;
         readonly IMouseCollidableSpritePoolService mouseCollidableSpritePoolService;
 
-        public MouseCollidableStaticImage(Texture2D texture)           
-        {
-            mouseCollidableSpritePoolService = ServiceProvider.Instance.GetService<IMouseCollidableSpritePoolService>();
-            mouseCollidableSpriteItem = mouseCollidableSpritePoolService.Spawn();
-            spriteRenderer = mouseCollidableSpriteItem.GetSpriteRenderer();
-            spriteRenderer.enabled = false;
-            mouseCollider = mouseCollidableSpriteItem.GetMouseCollider();
-            
-                        
-            Sprite sprite = new Sprite();
-            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
-            spriteRenderer.sprite = sprite;
-
-            var gameObject = mouseCollidableSpriteItem.GetGameObject();
-            collider = gameObject.AddComponent<PolygonCollider2D>();
-            collider.enabled = false;
-        }
-
-        public MouseCollidableStaticImage(Sprite sprite)
+        public MouseCollidableStaticImage(Sprite sprite, int order = 0)
         {
             mouseCollidableSpritePoolService = ServiceProvider.Instance.GetService<IMouseCollidableSpritePoolService>();
             mouseCollidableSpriteItem = mouseCollidableSpritePoolService.Spawn();
@@ -41,6 +23,7 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
             mouseCollider = mouseCollidableSpriteItem.GetMouseCollider();
 
             spriteRenderer.sprite = sprite;
+            spriteRenderer.sortingOrder = order;
 
             var gameObject = mouseCollidableSpriteItem.GetGameObject();
             collider = gameObject.AddComponent<PolygonCollider2D>();
@@ -53,12 +36,14 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
             {
                 collider.enabled = true;
             }
-            else
+            else if(true == isHidden && false == isEnabled)
             {
                 collider.enabled = false;
             }
+
             base.Render();
         }
+
         public IMouseCollider GetMouseCollider()
         {
             return mouseCollider;
@@ -69,6 +54,11 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
             spriteRenderer.sprite = null;
             UnityEngine.Object.Destroy(collider);
             mouseCollidableSpritePoolService.Despawn(mouseCollidableSpriteItem);
+        }
+
+        public void SetCollidable(bool isCollidable)
+        {
+            collider.enabled = isCollidable;
         }
     }
 }

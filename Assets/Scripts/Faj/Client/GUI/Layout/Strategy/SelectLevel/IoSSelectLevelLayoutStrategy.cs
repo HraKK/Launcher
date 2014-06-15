@@ -66,14 +66,14 @@ namespace Faj.Client.GUI.Layout.Strategy.SelectLevel
             text.SetColor(Color.red);
             text.SetFont("comic");
             text.SetSize(40);
-            text.SetPosition(200, 100);
+            text.SetPosition(400, 100);
         }
 
         public void DoStrategy()
         {
             selectMenu.GetMouseCollider().OnMouseUpEvent += new System.Action(OnUP);
             selectLevelLayout.AddElement(selectMenu);
-            selectLevelLayout.AddElement(text);
+            //selectLevelLayout.AddElement(text);
 
             foreach (var levelText in levelsText)
             {

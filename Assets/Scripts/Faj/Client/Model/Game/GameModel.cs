@@ -109,7 +109,7 @@ namespace Faj.Client.Model.Game
                     selectLevelLayout.Hide();
                     playerLayout.Display();
                     break;
-                case LocationEnum.SelectLevel:
+                case LocationEnum.SelectLevel:                    
                     UnityEngine.Debug.Log("To Select Level");
                     selectLevelLayout.Display();
                     playerLayout.Hide();
