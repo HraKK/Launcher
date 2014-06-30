@@ -8,12 +8,10 @@ namespace Faj.Client.GUI.Layout.Element.Text
 {
     class PriceTextElement : TextElement
     {
-        string price;
-
         public PriceTextElement(string price)
             : base(price)
         {
-            this.price = price;
+            text = price;
             width = 90;
             SetFont("comic");
             SetSize(44);
@@ -22,12 +20,9 @@ namespace Faj.Client.GUI.Layout.Element.Text
 
         public void SetPrice(string price)
         {
-            this.price = price;
-        }
-
-        protected override string GetText()
-        {
-            return price;
+            SetEnabled(false);
+            text = price;
+            SetEnabled(true);
         }
     }
 }

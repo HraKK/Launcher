@@ -128,26 +128,25 @@ namespace Faj.Client.GUI.Layout.Element.Upgrade
             var perkSprite = uiPackage.Get<Sprite>("perk_button");
             perk_1 = new MouseCollidableStaticImage(perkSprite, 4);
             perk_1.GetMouseCollider().OnMouseUpEvent += new System.Action(OnPerk1);
-            perk_1.SetPosition(x + 74, y - 400);
+            perk_1.SetPosition(x + 74, y - 370);
             elements.Add(perk_1);
 
             perk_2 = new MouseCollidableStaticImage(perkSprite, 4);
             perk_2.GetMouseCollider().OnMouseUpEvent += new System.Action(OnPerk2);
-            perk_2.SetPosition(x + 74 + 110, y - 400);
+            perk_2.SetPosition(x + 74 + 110, y - 370);
             elements.Add(perk_2);
 
             perk_3 = new MouseCollidableStaticImage(perkSprite, 4);
             perk_3.GetMouseCollider().OnMouseUpEvent += new System.Action(OnPerk3);
-            perk_3.SetPosition(x + 74 + 110 * 2, y - 400);
+            perk_3.SetPosition(x + 74 + 110 * 2, y - 370);
             elements.Add(perk_3);
 
-            var perksCollection = perkCollection.GetPerksByType("power");
             int offsetX = 0;
-            foreach (var perk in perksCollection)
+            for (int i = 0; i < 3; i++)
             {
                 var perkIconSprite = uiPackage.Get<Sprite>("skull_big");
                 var perkIcon = new StaticImageElement(perkIconSprite, 5);
-                perkIcon.SetPosition(x + 95 + offsetX, y - 384);
+                perkIcon.SetPosition(x + 95 + offsetX, y - 354);
                 perks.Add(perkIcon);
                 elements.Add(perkIcon);
 
@@ -156,31 +155,34 @@ namespace Faj.Client.GUI.Layout.Element.Upgrade
         }
 
         public void SetCollidable(bool isCollidable)
-        {
-            buyButton.SetCollidable(isCollidable);
+        {            
             perk_1.SetCollidable(isCollidable);
             perk_2.SetCollidable(isCollidable);
             perk_3.SetCollidable(isCollidable);
         }
 
-        public void SetHideText(bool isHidden)
+        public void SetEnableText(bool isEnabled)
         {
-            textShadow.SetHidden(isHidden);
-            text.SetHidden(isHidden);
-            description.SetHidden(isHidden);
-            priceShadow.SetHidden(isHidden);
-            price.SetHidden(isHidden);
+            textShadow.SetEnabled(isEnabled);
+            text.SetEnabled(isEnabled);
+            description.SetEnabled(isEnabled);
+            priceShadow.SetEnabled(isEnabled);
+            price.SetEnabled(isEnabled);
         }
 
         public void Show(string upgrade)
         {
-            this.upgrade = upgrade;
-            textShadow.SetHidden(false);
-            text.SetHidden(false);
-            
-            text.SetUpgrade(upgrade);
-            textShadow.SetUpgrade(upgrade);
+            if (null == upgrade)
+            {
+                return;
+            }
 
+            this.upgrade = upgrade;
+
+            textShadow.SetUpgrade(upgrade);
+            text.SetUpgrade(upgrade);
+            
+            
             var upgrades = playerModel.GetUpgrades().GetUpgrades();
             int upgradeLevel = 0;
             if (!upgrades.TryGetValue(upgrade, out upgradeLevel))
@@ -190,44 +192,57 @@ namespace Faj.Client.GUI.Layout.Element.Upgrade
 
             foreach (var inactive in inactives)
             {
-                inactive.SetHidden(false);
+                inactive.SetEnabled(true);
             }
 
             foreach (var activeKVP in actives)
             {
                 if (activeKVP.Key > upgradeLevel)
                 {
-                    activeKVP.Value.SetHidden(true);
+                    activeKVP.Value.SetEnabled(false);
                     continue;
                 }
 
-                activeKVP.Value.SetHidden(false);
+                activeKVP.Value.SetEnabled(true);
             }
-
+            
             var upgradeType = upgradeTypeCollection.GetItem(upgrade);
             description.SetDescription(upgradeType.GetDescription());
-            description.SetHidden(false);
 
-            perk_1.SetHidden(false);
-            perk_2.SetHidden(false);
-            perk_3.SetHidden(false);
+            perk_1.SetEnabled(true);
+            perk_2.SetEnabled(true);
+            perk_3.SetEnabled(true);
+
+            perkItems = perkCollection.GetPerksByType(upgrade);
+
+            for (int i = 0; i < 3; i++)
+            {
+                var perkIcon = perks[i];
+                if (perkItems.Count <= (i))
+                {
+                    perkIcon.SetEnabled(false);
+                    continue;
+                }
+                perkIcon.SetEnabled(true);
+                var perkIconSprite = uiPackage.Get<Sprite>("skull_big");
+                perkIcon.ChangeSprite(perkIconSprite);
+                perkIcon.SetEnabled(true);
+            }
 
             var upgradeItem = upgradeBuyCollection.GetUpgradeBuyItem(upgrade, upgradeLevel + 1);
             if (null == upgradeItem)
             {
-                arrow.SetHidden(true);
-                price.SetHidden(true);
-                priceShadow.SetHidden(true);
-                buyButton.SetHidden(true);
-                buyInactiveButton.SetHidden(true);
+                price.SetEnabled(false);
+                priceShadow.SetEnabled(false);
+                arrow.SetEnabled(false);
+                buyButton.SetEnabled(false);
+                buyInactiveButton.SetEnabled(false);
                 return;
             }
 
-            arrow.SetHidden(false);
-            priceShadow.SetHidden(false);
-            price.SetHidden(false);
-            
-            buyInactiveButton.SetHidden(false);
+            arrow.SetEnabled(true);
+            buyButton.SetEnabled(true);
+            buyInactiveButton.SetEnabled(true);
 
             bool isEnoughResources = false;
             int cost = 0;
@@ -239,48 +254,43 @@ namespace Faj.Client.GUI.Layout.Element.Upgrade
                 isEnoughResources = playerModel.GetResources().IsEnoughResources(resources);
             }
 
-            price.SetPrice(cost.ToString());
+
             priceShadow.SetPrice(cost.ToString());
+            price.SetPrice(cost.ToString());
+            
 
             if (true == isEnoughResources)
             {
-                buyButton.SetHidden(false);
                 buyButton.SetEnabled(true);
+                buyButton.SetCollidable(true);
             }
             else
             {
+                buyButton.SetCollidable(false);
                 buyButton.SetEnabled(false);
-                buyButton.SetHidden(true);
                 
             }
 
-            perkItems = perkCollection.GetPerksByType("power");
-            int i = 0;
-            foreach (var perk in perkItems)
-            {
-                var perkIconSprite = uiPackage.Get<Sprite>("skull_big");
-                var perkIcon = perks[i];
-                perkIcon.ChangeSprite(perkIconSprite);
-                perkIcon.SetEnabled(true);
-                perkIcon.SetHidden(false);
-                i++;
-            }
+            
 
         }
 
         void OnPerk1()
         {
-            if (null == OnPerkEvent)
+            UnityEngine.Debug.Log("perk1 clicked");
+            if (null == OnPerkEvent || perkItems.Count < 1)
             {
                 return;
             }
+
 
             OnPerkEvent(perkItems[0].GetId());
         }
 
         void OnPerk2()
         {
-            if (null == OnPerkEvent)
+            UnityEngine.Debug.Log("perk2 clicked");
+            if (null == OnPerkEvent || perkItems.Count < 2)
             {
                 return;
             }
@@ -290,7 +300,8 @@ namespace Faj.Client.GUI.Layout.Element.Upgrade
 
         void OnPerk3()
         {
-            if (null == OnPerkEvent)
+            UnityEngine.Debug.Log("perk3 clicked");
+            if (null == OnPerkEvent || perkItems.Count < 3)
             {
                 return;
             }
@@ -300,6 +311,7 @@ namespace Faj.Client.GUI.Layout.Element.Upgrade
 
         void OnBuy()
         {
+            UnityEngine.Debug.Log("buy clicked");
             if (null == OnBuyEvent)
             {
                 return;

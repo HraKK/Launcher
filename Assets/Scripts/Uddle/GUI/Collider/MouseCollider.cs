@@ -12,7 +12,6 @@ namespace Uddle.GUI.Collider
 
         void OnMouseDown()
         {
-            UnityEngine.Debug.Log("#3");
             if (OnMouseUpEvent == null)
             {
                 return;
@@ -23,7 +22,6 @@ namespace Uddle.GUI.Collider
 
         void OnMouseEnter()
         {
-            UnityEngine.Debug.Log("#1");
             if (OnMouseEnterEvent == null)
             {
                 return;
@@ -34,7 +32,6 @@ namespace Uddle.GUI.Collider
 
         void OnMouseExit()
         {
-            UnityEngine.Debug.Log("#2");
             if (OnMouseExitEvent == null)
             {
                 return;

@@ -38,7 +38,7 @@ namespace Faj.Server.Model.Player.Dao
 
         string GetSavePath(string playerId)
         {
-            return "\\player\\" + playerId;
+            return "c:\\player\\" + playerId;
         }
 	}
 }

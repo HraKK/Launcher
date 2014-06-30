@@ -30,13 +30,13 @@ namespace Uddle.GUI.Layout.Element.SpriteElement
             collider.enabled = false;
         }
 
-        protected override void Render()
+        public override void Render()
         {
             if (false == isHidden && true == isEnabled)
             {
                 collider.enabled = true;
             }
-            else if(true == isHidden && false == isEnabled)
+            else // (true == isHidden && false == isEnabled)
             {
                 collider.enabled = false;
             }

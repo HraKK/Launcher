@@ -6,5 +6,6 @@ namespace Faj.Common.Static.Perk.Collection.Item.Interface
     {
         string GetId();
         string GetType();
+        string GetDescription();
     }
 }

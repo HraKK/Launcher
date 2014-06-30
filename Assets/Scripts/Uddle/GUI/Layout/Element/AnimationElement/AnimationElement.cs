@@ -44,6 +44,11 @@ namespace Uddle.GUI.Layout.Element.AnimationElement
                 spriteRenderer.sprite = sprites[current];
             }
 
+            if (isPlaying == false)
+            {
+                return;
+            }
+
             timer += Time.deltaTime;
 
             if (timer > frameRate)
@@ -76,11 +81,21 @@ namespace Uddle.GUI.Layout.Element.AnimationElement
             }
             else
             {
+                isPlaying = false;
+                isStarted = false;
+                current = 0;
+                timer = 0;
+
                 if (null != OnReleaseEvent)
                 {
                     OnReleaseEvent(this);
                 }
             }
+        }
+
+        public override void Disappear()
+        {
+            base.Disappear();            
         }
 	}
 }

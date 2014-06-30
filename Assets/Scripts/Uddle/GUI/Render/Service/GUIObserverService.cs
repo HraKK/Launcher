@@ -23,7 +23,7 @@ namespace Uddle.GUI.Render.Service
         }
 
         public void Notify()
-        {
+        {            
             this.observerCollection.Notify();
         }
 	}

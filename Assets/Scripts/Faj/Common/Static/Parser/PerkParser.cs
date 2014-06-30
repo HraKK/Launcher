@@ -25,8 +25,9 @@ namespace Faj.Common.Static.Parser
 
             var id = (string)element.Element("id");
             var type = (string)element.Element("type");
+            var description = (string)element.Element("description");
 
-            var item = new PerkItem(id, type);
+            var item = new PerkItem(id, type, description);
 
             return item;
         }

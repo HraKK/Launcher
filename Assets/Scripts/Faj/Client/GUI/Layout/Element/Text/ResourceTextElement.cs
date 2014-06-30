@@ -18,9 +18,19 @@ namespace Faj.Client.GUI.Layout.Element.Text
             style.alignment = TextAnchor.MiddleCenter;
         }
 
-        protected override string GetText()
+        protected string GetText()
         {
             return resources.GetResource(text).ToString();
+        }
+
+        public override void Notify()
+        {
+            if (true == isHidden || false == isEnabled)
+            {
+                return;
+            }
+
+            UnityEngine.GUI.Label(position, GetText(), style);
         }
 	}
 }

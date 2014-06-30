@@ -6,11 +6,13 @@ namespace Faj.Common.Static.Perk.Collection.Item
     {
         readonly string id;
         readonly string type;
+        readonly string description;
 
-        public PerkItem(string id, string type)
+        public PerkItem(string id, string type, string description)
         {
             this.id = id;
             this.type = type;
+            this.description = description;
         }
 
         public string GetId()
@@ -21,6 +23,11 @@ namespace Faj.Common.Static.Perk.Collection.Item
         public string GetType()
         {
             return type;
+        }
+
+        public string GetDescription()
+        {
+            return description;
         }
     }
 }

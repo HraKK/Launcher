@@ -24,7 +24,7 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
 
         public void DoInitializeStrategy()
         {
-            var package = packageService.GetPackage("prefab_ui");
+            var package = packageService.GetPackage("preloader");
             Sprite[] intro = new Sprite[2];
             intro[0] = package.Get<Sprite>("intro_atlas_0");
             intro[1] = package.Get<Sprite>("intro_atlas_1");
@@ -35,15 +35,18 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
 
         protected void OnRelease(IDependency dependency)
         {
+            UnityEngine.Debug.Log("WOOOOT");
             introLayout.Release();
+
         }
 
 
         public void DoStrategy()
         {
+            introLogo.SetEnabled(true);
             introLayout.AddElement(introLogo);
             introLogo.Play();
-            UnityEngine.Debug.Log("WOOOOT");
+            
         }
 
         public void DoDisappearStrategy()

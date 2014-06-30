@@ -14,13 +14,9 @@ namespace Faj.Client.GUI.Layout.Element.Text
             : base(category)
         {
             width = 90;
-            this.category = category;
+            text = category;
             style.alignment = TextAnchor.MiddleCenter;
         }
 
-        protected override string GetText()
-        {
-            return category;
-        }
     }
 }

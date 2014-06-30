@@ -28,7 +28,7 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
         IPlayerLayout playerLayout;
         StaticImageElement background0;
         StaticImageElement background1;
-        StaticImageElement selectMenu;
+        StaticImageElement soundButton;
 
         ResourceTextElement crystallCountTextShadow;
         ResourceTextElement crystallCountText;
@@ -46,6 +46,7 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
         StaticImageElement skullIcon;
 
         MouseCollidableStaticImage achievementsButton;
+        MouseCollidableStaticImage startButton;
 
         CategoryButtonElement upgradeCategory;
         CategoryButtonElement mobCategory;
@@ -81,19 +82,15 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
 
             background0 = new StaticImageElement(backgound0Sprite);
             background0.SetPosition(0, 0);
+            
 
             background1 = new StaticImageElement(backgound1Sprite, 1);
             background1.SetPosition(0, 70);
 
             var soundSprite = uiPackage.Get<Sprite>("sound");
-            selectMenu = new StaticImageElement(soundSprite, 2);
-            selectMenu.SetPosition(175, 532);
+            soundButton = new StaticImageElement(soundSprite, 2);
+            soundButton.SetPosition(175, 532);
             
-            //var package = packageService.GetPackage("prefab_ui");
-            //var selectMenuSprite = package.Get<Sprite>("intro_atlas_0");
-            //selectMenu = new MouseCollidableStaticImage(selectMenuSprite);
-            //selectMenu.SetPosition(100, 0);
-
             var resourceButtonSprite = uiPackage.Get<Sprite>("resource_button");
             crystallButton = new MouseCollidableStaticImage(resourceButtonSprite, 2);
             crystallButton.SetPosition(318, 512);
@@ -173,9 +170,9 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
             AddUpgrade("power", 162, 200);
             AddUpgrade("springs", 162 + 168, 200);
             AddUpgrade("oil", 162 + 168 * 2, 200);
-            AddUpgrade("belt", 162, 44);
-            AddUpgrade("cloak", 162 + 168, 44);
-            AddUpgrade("machine", 162 + 168 * 2, 44);
+            AddUpgrade("belt", 162, 36);
+            AddUpgrade("cloak", 162 + 168, 36);
+            AddUpgrade("machine", 162 + 168 * 2, 36);
 
             AddExtra("coffee", 162, 200);
             AddExtra("battery", 162 + 168, 200);
@@ -183,19 +180,19 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
             AddMob("leprechaun", 162, 200);
 
             perk = new PerkElement(168, 60);
-            perk.SetHidden(true);
             perk.SetEnabled(false);
             perk.OnCancelEvent += new System.Action(OnCancelPerk);
             perk.OnBuyEvent += new System.Action<string>(OnBuyPerk);
 
             upgrade = new UpgradeElement(600, 512);
             upgrade.OnBuyEvent += new System.Action<string>(OnBuy);
-            upgrade.OnPerkEvent += new System.Action<string>(OnPerk);
-            upgrade.SetHidden(true);
+            upgrade.OnPerkEvent += new System.Action<string>(OnPerk);            
             upgrade.SetEnabled(false);
 
-          
-
+            var startButtonSprite = uiPackage.Get<Sprite>("start_button");
+            startButton = new MouseCollidableStaticImage(startButtonSprite, 2);
+            startButton.SetPosition(742, 36);
+            startButton.GetMouseCollider().OnMouseUpEvent += new System.Action(OnUP);
         }
 
         protected void AddUpgrade(string upgrade, int x, int y)
@@ -209,7 +206,6 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
         {
             var extraElement = new UpgradeButtonElement(extra, x, y);
             extraElement.OnUpgradeActiveEvent += new System.Action<UpgradeButtonElement>(OnUpgradeActive);
-            extraElement.SetHidden(true);
             extraElement.SetEnabled(false);
             extras.Add(extraElement);
         }
@@ -218,7 +214,6 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
         {
             var mobElement = new UpgradeButtonElement(mob, x, y);
             mobElement.OnUpgradeActiveEvent += new System.Action<UpgradeButtonElement>(OnUpgradeActive);
-            mobElement.SetHidden(true);
             mobElement.SetEnabled(false);
             mobs.Add(mobElement);
         }
@@ -227,6 +222,11 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
         {
             if (null != upgradeButtonActive)
             {
+                if (upgradeButtonActive == upgradeButton)
+                {
+                    return;
+                }
+
                 upgradeButtonActive.SetInactive();
             }
 
@@ -238,6 +238,11 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
         {
             if (null != categoryButtonActive)
             {
+                if (categoryButtonActive == categoryButton)
+                {
+                    return;
+                }
+
                 categoryButtonActive.SetInactive();
             }
 
@@ -248,52 +253,42 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
                 case "upgrade":
                     foreach (var extra in extras)
                     {
-                        extra.SetHidden(true);
                         extra.SetEnabled(false);
                     }
                     foreach (var mob in mobs)
                     {
-                        mob.SetHidden(true);
                         mob.SetEnabled(false);
                     }
                     foreach (var upgrade in upgrades)
                     {
-                        upgrade.SetHidden(false);
                         upgrade.SetEnabled(true);
                     }
                     break;
                 case "mobs":
-                    UnityEngine.Debug.Log("hidden");
                     foreach (var extra in extras)
                     {
-                        extra.SetHidden(true);
                         extra.SetEnabled(false);
                     }
                     foreach (var mob in mobs)
                     {
-                        mob.SetHidden(false);
                         mob.SetEnabled(true);
                     }
                     foreach (var upgrade in upgrades)
                     {
-                        upgrade.SetHidden(true);
                         upgrade.SetEnabled(false);
                     }
                     break;
                 case "extra":
                     foreach (var extra in extras)
                     {
-                        extra.SetHidden(false);
                         extra.SetEnabled(true);
                     }
                     foreach (var mob in mobs)
                     {
-                        mob.SetHidden(true);
                         mob.SetEnabled(false);
                     }
                     foreach (var upgrade in upgrades)
                     {
-                        upgrade.SetHidden(true);
                         upgrade.SetEnabled(false);
                     }
                     break;
@@ -330,50 +325,48 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
 
         void OnPerk(string perkId)
         {
+            UnityEngine.Debug.Log("On perk clicked");
+
             SetCollidable(false);
-            SetHideText(true);
-            upgrade.SetHideText(true);            
+            SetEnabledText(false);
+            upgrade.SetEnableText(false);            
             perk.Show(perkId);
+            startButton.SetCollidable(false);
         }
 
         void OnCancelPerk()
         {
             SetCollidable(true);
-            SetHideText(false);
-            upgrade.SetHideText(false);
+            SetEnabledText(true);
+            upgrade.SetEnableText(true);
             perk.SetEnabled(false);
-            perk.SetHidden(true);
-
+            startButton.SetCollidable(true);
         }
 
 
         void OnUP()
         {
-
-
-            //playerModel.ChangeLocation(LocationEnum.SelectLevel);
-            playerModel.Save();            
+            playerModel.ChangeLocation(LocationEnum.SelectLevel);
         }
 
-        public void SetHideText(bool isHidden)
+        public void SetEnabledText(bool isEnabled)
         {
-            crystallCountTextShadow.SetHidden(isHidden);
-            crystallCountText.SetHidden(isHidden);
+            crystallCountTextShadow.SetEnabled(isEnabled);
+            crystallCountText.SetEnabled(isEnabled);
 
-            skullCountTextShadow.SetHidden(isHidden);
-            skullCountText.SetHidden(isHidden);
+            skullCountTextShadow.SetEnabled(isEnabled);
+            skullCountText.SetEnabled(isEnabled);
 
-            moneyCountTextShadow.SetHidden(isHidden);
-            moneyCountText.SetHidden(isHidden);
-            
-
+            moneyCountTextShadow.SetEnabled(isEnabled);
+            moneyCountText.SetEnabled(isEnabled);
         }
 
         public void DoStrategy()
         {
-            playerLayout.AddElement(selectMenu);
+            
             playerLayout.AddElement(background0);
             playerLayout.AddElement(background1);
+            playerLayout.AddElement(soundButton);
             playerLayout.AddElement(crystallButton);
             playerLayout.AddElement(crystallCountTextShadow);
             playerLayout.AddElement(crystallCountText);
@@ -407,8 +400,8 @@ namespace Faj.Client.GUI.Layout.Strategy.Intro
 
 
             upgrade.AddToLayout(playerLayout);
-            //playerLayout.AddElement(text);
-            //selectMenu.GetMouseCollider().OnMouseUpEvent += new System.Action(OnUP);
+            playerLayout.AddElement(startButton);
+            //selectMenu.
         }
 
         public void DoDisappearStrategy()

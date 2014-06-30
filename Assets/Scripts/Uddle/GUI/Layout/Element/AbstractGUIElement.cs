@@ -13,7 +13,7 @@ namespace Uddle.GUI.Layout.Element
         protected ISpriteItem spriteItem;
         protected SpriteRenderer spriteRenderer;
 
-        protected bool isEnabled = false;
+        protected bool isEnabled = true;
         protected bool isHidden = false;
 
         public event Action<IGUIElement> OnVisibleEvent;
@@ -70,7 +70,7 @@ namespace Uddle.GUI.Layout.Element
             Render();
         }
 
-        protected virtual void Render()
+        public virtual void Render()
         {
             if (false == isHidden && true == isEnabled)
             {

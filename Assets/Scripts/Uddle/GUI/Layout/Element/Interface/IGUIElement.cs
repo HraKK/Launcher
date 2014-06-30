@@ -14,5 +14,7 @@ namespace Uddle.GUI.Layout.Element.Interface
         bool IsEnabled();
         void SetHidden(bool isHidden);
         void Disappear();
+
+        void Render();
 	}
 }

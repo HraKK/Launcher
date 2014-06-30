@@ -113,6 +113,7 @@ namespace Faj.Client.Model.Game
                     UnityEngine.Debug.Log("To Select Level");
                     selectLevelLayout.Display();
                     playerLayout.Hide();
+                    
                     break;
 
             }

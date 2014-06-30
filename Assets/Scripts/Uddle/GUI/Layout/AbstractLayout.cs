@@ -42,7 +42,10 @@ namespace Uddle.GUI.Layout
 
             for (int i = 0; i < elementsCount; i++)
             {
-                elements[i].SetEnabled(true);
+                elements[i].Render();
+                //elements[i].SetHidden(false);
+                //elements[i].SetEnabled(true);
+
             }
         }
 
@@ -95,9 +98,12 @@ namespace Uddle.GUI.Layout
         {
             for (var i = 0; i < elements.Count; i++)
             {
+                GUIObserverService.RemoveObserver(elements[i] as IObserver);
                 elements[i].OnHideEvent -= new System.Action<IGUIElement>(OnHide);
                 elements[i].OnVisibleEvent -= new System.Action<IGUIElement>(OnVisible);
-                elements[i].Disappear();
+                elements[i].SetHidden(false);
+                elements[i].SetEnabled(false);
+                elements[i].Disappear();                
                 elements[i] = null;
             }
 

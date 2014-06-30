@@ -151,8 +151,8 @@ namespace Faj.Client.GUI.Layout.Element.Perk
 
             UnityEngine.Debug.Log(perk);
 
-            text.SetUpgrade("Posion");
-            textShadow.SetUpgrade("Posion");
+            text.SetUpgrade(perk);
+            textShadow.SetUpgrade(perk);
 
 
             
@@ -162,7 +162,9 @@ namespace Faj.Client.GUI.Layout.Element.Perk
             text.SetEnabled(true);
             text.SetHidden(false);
 
-            description.SetDescription("На рисунке 4 показано применение градиента к сложной форме, а нам надо управлять градиентом на всей фигуре. Кнопка Unite в палитре Pathfinder.");
+            var perkItem = perkCollection.GetItem(perk);
+
+            description.SetDescription(perkItem.GetDescription());
             description.SetEnabled(true);
             description.SetHidden(false);
 

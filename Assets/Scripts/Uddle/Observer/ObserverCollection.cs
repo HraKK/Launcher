@@ -13,21 +13,22 @@ namespace Uddle.Observer
         public void AddObserver(IObserver observer)
         {
             observers.Add(observer);
+            count = observers.Count;
         }
 
         public void RemoveObserver(IObserver observer)
         {
             observers.Remove(observer);
+            count = observers.Count;
         }
 
         public void Notify()
         {
-            count = observers.Count;
-
-            for (index = 0; index < count; index++)
-            {
-                observers[index].Notify();
-            }
+            observers.ForEach(observer => observer.Notify());
+            //for (index = 0; index < count; index++)
+            //{
+                //observers[index].Notify();
+            //}
         }
 	}
 }

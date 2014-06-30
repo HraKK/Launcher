@@ -11,6 +11,7 @@ namespace Uddle.GUI.Layout.Element.TextElement
         protected GUIStyle style;
         protected int width = 0;
         protected int height = 0;
+        protected Rect position;
         
         public TextElement(string text)
             : base()
@@ -34,7 +35,7 @@ namespace Uddle.GUI.Layout.Element.TextElement
             var dX = (screenWidth - Screen.width) / 2;
             this.x = x - dX;
             this.y = screenHeight - y;
-
+            position = new Rect(this.x, this.y, width, height);
             
         }
 
@@ -44,19 +45,14 @@ namespace Uddle.GUI.Layout.Element.TextElement
             style.hover.textColor = color;            
         }
 
-        protected virtual string GetText()
+        public virtual void Notify()
         {
-            return text;
-        }
-
-        public void Notify()
-        {
-            if (true == isHidden)
+            if (true == isHidden || false == isEnabled)
             {
                 return;
             }
 
-            UnityEngine.GUI.Label(new Rect(x, y, width, height), GetText(), style);
+            UnityEngine.GUI.Label(position, text, style);
         }
     }
 }
